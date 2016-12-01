@@ -19,7 +19,8 @@ import com.google.gson.GsonBuilder;
 
 @Module
 public class ApiModule {
-    String mBaseUrl;
+
+    private String mBaseUrl;
 
     public ApiModule(String mBaseUrl) {
         this.mBaseUrl = mBaseUrl;
