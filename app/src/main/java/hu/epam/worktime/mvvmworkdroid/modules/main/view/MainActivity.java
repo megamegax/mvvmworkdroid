@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 import hu.epam.worktime.mvvmworkdroid.R;
+import hu.epam.worktime.mvvmworkdroid.di.MainActivityComponent;
 import hu.epam.worktime.mvvmworkdroid.modules.save.view.SaveTimeActivity;
 import hu.hanprog.worktime.service.WorkServiceApi;
 import hu.hanprog.worktime.service.work.model.WorkTime;
@@ -24,6 +25,7 @@ public class MainActivity extends AppCompatActivity {
 
     @Inject
     WorkServiceApi workServiceApi;
+    private MainActivityComponent component;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,6 +33,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        inject();
         initList();
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -40,6 +43,11 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+    }
+
+    private void inject() {
+        component = MainActivityComponent.Injector.buildComponent(this);
+        component.inject(this);
     }
 
     private void initList() {

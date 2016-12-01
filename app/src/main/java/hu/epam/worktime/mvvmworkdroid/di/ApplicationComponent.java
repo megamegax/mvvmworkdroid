@@ -28,4 +28,27 @@ public interface ApplicationComponent {
     Resources resources();
 
     WorkServiceApi workServiceApi();
+
+    /**
+     * Inner injector class to avoid the boiler-plate dagger coding in injected class.
+     */
+    final class Injector {
+        private static ApplicationComponent applicationComponent;
+
+        private Injector() {
+
+        }
+
+        public static void inject(WorkDroidApp application) {
+            applicationComponent = DaggerApplicationComponent.builder()
+                    .applicationModule(new ApplicationModule(application))
+                    .apiModule(new ApiModule("http://hunyady.ddns.net:8015/"))
+                    .build();
+            applicationComponent.inject(application);
+        }
+
+        public static ApplicationComponent getComponent() {
+            return applicationComponent;
+        }
+    }
 }

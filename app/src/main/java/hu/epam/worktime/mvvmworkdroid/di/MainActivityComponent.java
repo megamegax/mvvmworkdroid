@@ -1,0 +1,52 @@
+package hu.epam.worktime.mvvmworkdroid.di;
+
+import android.content.Context;
+import android.content.res.Resources;
+import dagger.Component;
+import hu.epam.worktime.mvvmworkdroid.di.qualifiers.ApplicationContext;
+import hu.epam.worktime.mvvmworkdroid.modules.main.view.MainActivity;
+import hu.hanprog.worktime.service.WorkServiceApi;
+
+/**
+ *
+ *
+ * Created by Mihaly_Hunyady on 2016. 12. 01..
+ */
+
+@Component(dependencies = ApplicationModule.class, modules = {ActivityModule.class})
+public interface MainActivityComponent {
+    void inject(MainActivity mainActivity);
+
+    Resources resources();
+
+    @ApplicationContext
+    Context context();
+
+    /**
+     * Injector class for injecting the component into the activity.
+     * The class help to avoid the boiler-plate dagger coding in injected class.
+     */
+
+    final class Injector {
+        private static MainActivityComponent activityComponent;
+
+        private Injector() {
+        }
+
+        public static MainActivityComponent buildComponent(MainActivity activity) {
+            activityComponent = DaggerMainActivityComponent.builder()
+                    .applicationComponent(ApplicationComponent.Injector.getComponent())
+                    .activityModule(new ActivityModule(activity))
+                    .build();
+            return activityComponent;
+        }
+
+        public static void setActivityComponent(MainActivityComponent activityComponent) {
+            Injector.activityComponent = activityComponent;
+        }
+
+        public static MainActivityComponent getComponent() {
+            return activityComponent;
+        }
+    }
+}
