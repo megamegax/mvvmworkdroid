@@ -5,8 +5,8 @@ import android.content.Context;
 import android.content.res.Resources;
 import dagger.Component;
 import hu.epam.worktime.mvvmworkdroid.WorkDroidApp;
-import hu.epam.worktime.mvvmworkdroid.di.components.DaggerApplicationComponent;
 import hu.epam.worktime.mvvmworkdroid.di.qualifiers.ApplicationContext;
+import hu.hanprog.worktime.service.WorkServiceApi;
 
 import javax.inject.Singleton;
 
@@ -26,6 +26,8 @@ public interface ApplicationComponent {
     Application application();
 
     Resources resources();
+
+    WorkServiceApi workServiceApi();
 
     /**
      * Inner injector class to avoid the boiler-plate dagger coding in injected class.

@@ -1,4 +1,9 @@
 apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+
+apply from: 'https://gist.githubusercontent.com/stefanhoth/37f86c8e41d648cbd2c8/raw/49ca13d028885cae89f7da949f11069365aefeec/idea-gradle-sources.gradle'
+apply plugin: "com.github.ben-manes.versions"
 
 android {
     compileSdkVersion 25
@@ -18,11 +23,14 @@ android {
         }
     }
 }
+
 ext {
     supportLibVersion = '25.0.1'
     daggerVersion = "2.4"
-    retrofitVersion="2.1.0"
+    retrofitVersion = "2.1.0"
+    kotlinVersion = "1.0.5-2"
 }
+
 dependencies {
     compile "com.google.dagger:dagger:${daggerVersion}"
     annotationProcessor "com.google.dagger:dagger-compiler:2.4"
@@ -33,6 +41,9 @@ dependencies {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
     testCompile 'junit:junit:4.12'
+
+    compile "org.jetbrains.kotlin:kotlin-stdlib:${kotlinVersion}"
+
 
     compile "com.android.support:appcompat-v7:${supportLibVersion}"
     compile "com.android.support:recyclerview-v7:${supportLibVersion}"
@@ -52,6 +63,17 @@ dependencies {
     compile "com.squareup.retrofit2:converter-gson:${retrofitVersion}"
 
     compile 'com.chibatching:kotpref:1.5.0'
+}
 
-
+buildscript {
+    ext.kotlinVersion = "1.0.5-2"
+    repositories {
+        jcenter()
+        maven { url "https://jitpack.io" }
+    }
+    dependencies {
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:${kotlinVersion}"
+        classpath "org.jetbrains.kotlin:kotlin-android-extensions:${kotlinVersion}"
+        classpath "com.github.ben-manes:gradle-versions-plugin:0.11.3"
+    }
 }
