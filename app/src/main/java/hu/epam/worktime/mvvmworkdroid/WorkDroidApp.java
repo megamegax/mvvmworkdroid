@@ -1,6 +1,7 @@
 package hu.epam.worktime.mvvmworkdroid;
 
 import android.app.Application;
+import hu.epam.worktime.mvvmworkdroid.di.ApiModule;
 import hu.epam.worktime.mvvmworkdroid.di.ApplicationComponent;
 import hu.epam.worktime.mvvmworkdroid.di.ApplicationModule;
 import hu.epam.worktime.mvvmworkdroid.di.DaggerApplicationComponent;
@@ -32,6 +33,7 @@ final class Injector {
     public static void inject(WorkDroidApp application) {
         applicationComponent = DaggerApplicationComponent.builder()
                 .applicationModule(new ApplicationModule(application))
+                .apiModule(new ApiModule("http://hunyady.ddns.net:8015/"))
                 .build();
         applicationComponent.inject(application);
     }
