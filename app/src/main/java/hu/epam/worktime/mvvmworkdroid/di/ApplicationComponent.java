@@ -15,7 +15,7 @@ import javax.inject.Singleton;
  */
 
 @Singleton
-@Component(modules = {ApplicationModule.class, ApiModule.class})
+@Component(modules = {ApplicationModule.class})
 public interface ApplicationComponent {
 
     void inject(WorkDroidApp workDroidApp);
@@ -26,8 +26,6 @@ public interface ApplicationComponent {
     Application application();
 
     Resources resources();
-
-    WorkServiceApi workServiceApi();
 
     /**
      * Inner injector class to avoid the boiler-plate dagger coding in injected class.
@@ -42,7 +40,6 @@ public interface ApplicationComponent {
         public static void inject(WorkDroidApp application) {
             applicationComponent = DaggerApplicationComponent.builder()
                     .applicationModule(new ApplicationModule(application))
-                    .apiModule(new ApiModule("http://hunyady.ddns.net:8015/"))
                     .build();
             applicationComponent.inject(application);
         }

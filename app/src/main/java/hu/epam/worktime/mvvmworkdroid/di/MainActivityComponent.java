@@ -13,7 +13,7 @@ import hu.hanprog.worktime.service.WorkServiceApi;
  * Created by Mihaly_Hunyady on 2016. 12. 01..
  */
 
-@Component(dependencies = ApplicationModule.class, modules = {ActivityModule.class})
+@Component(dependencies = ApplicationModule.class, modules = {ActivityModule.class, ApiModule.class})
 public interface MainActivityComponent {
     void inject(MainActivity mainActivity);
 
@@ -21,6 +21,8 @@ public interface MainActivityComponent {
 
     @ApplicationContext
     Context context();
+
+    WorkServiceApi workServiceApi();
 
     /**
      * Injector class for injecting the component into the activity.
@@ -37,6 +39,7 @@ public interface MainActivityComponent {
             activityComponent = DaggerMainActivityComponent.builder()
                     .applicationComponent(ApplicationComponent.Injector.getComponent())
                     .activityModule(new ActivityModule(activity))
+                    .apiModule(new ApiModule("http://hunyady.ddns.net:8015/"))
                     .build();
             return activityComponent;
         }
