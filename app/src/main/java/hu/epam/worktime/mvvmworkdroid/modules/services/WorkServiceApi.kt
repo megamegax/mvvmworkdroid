@@ -1,8 +1,9 @@
 package hu.hanprog.worktime.service
 
-import hu.hanprog.worktime.service.model.WorkDay
-import hu.hanprog.worktime.service.timeevent.model.Event
-import hu.hanprog.worktime.service.work.model.WorkTime
+
+import hu.epam.worktime.mvvmworkdroid.modules.services.models.Event
+import hu.epam.worktime.mvvmworkdroid.modules.services.models.WorkDay
+import hu.epam.worktime.mvvmworkdroid.modules.services.models.WorkTime
 import retrofit2.Call
 import retrofit2.http.Body
 import retrofit2.http.GET

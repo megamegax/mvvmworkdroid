@@ -1,9 +1,8 @@
-package hu.epam.worktime.mvvmworkdroid.modules.main.view;
+package hu.epam.worktime.mvvmworkdroid.modules.main.router;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
@@ -13,15 +12,10 @@ import hu.epam.worktime.mvvmworkdroid.R;
 import hu.epam.worktime.mvvmworkdroid.di.MainActivityComponent;
 import hu.epam.worktime.mvvmworkdroid.modules.save.view.SaveTimeActivity;
 import hu.hanprog.worktime.service.WorkServiceApi;
-import hu.hanprog.worktime.service.work.model.WorkTime;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 
 import javax.inject.Inject;
-import java.util.List;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements MainRouter {
 
     @Inject
     WorkServiceApi workServiceApi;
@@ -34,7 +28,6 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         inject();
-        initList();
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -48,20 +41,6 @@ public class MainActivity extends AppCompatActivity {
     private void inject() {
         component = MainActivityComponent.Injector.buildComponent(this);
         component.inject(this);
-    }
-
-    private void initList() {
-        workServiceApi.workTimes(2).enqueue(new Callback<List<WorkTime>>() {
-            @Override
-            public void onResponse(Call<List<WorkTime>> call, Response<List<WorkTime>> response) {
-                System.out.println("megjöttek:" + response.body().size());
-            }
-
-            @Override
-            public void onFailure(Call<List<WorkTime>> call, Throwable t) {
-
-            }
-        });
     }
 
     @Override
@@ -84,5 +63,15 @@ public class MainActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void openDetails() {
+
+    }
+
+    @Override
+    public void openNewEntry() {
+
     }
 }

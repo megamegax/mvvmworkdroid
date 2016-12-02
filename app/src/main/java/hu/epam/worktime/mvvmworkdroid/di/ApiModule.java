@@ -27,27 +27,23 @@ public class ApiModule {
     }
 
     @Provides
-    @Singleton
     GsonBuilder provideGsonBuilder() {
         GsonBuilder gsonBuilder = new GsonBuilder();
         return gsonBuilder;
     }
 
     @Provides
-    @Singleton
     GsonConverterFactory provideGsonConverterFactory(GsonBuilder gsonBuilder) {
         return GsonConverterFactory.create(Converters.registerAll(gsonBuilder).create());
     }
 
     @Provides
-    @Singleton
     OkHttpClient provideOkhttpClient() {
         OkHttpClient.Builder client = new OkHttpClient.Builder();
         return client.build();
     }
 
     @Provides
-    @Singleton
     WorkServiceApi provideWorkService(GsonConverterFactory gsonConverterFactory, OkHttpClient okHttpClient) {
         return new Retrofit.Builder()
                 .addConverterFactory(gsonConverterFactory)

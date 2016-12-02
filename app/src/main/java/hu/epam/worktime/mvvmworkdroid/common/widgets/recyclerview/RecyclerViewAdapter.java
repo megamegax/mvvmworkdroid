@@ -3,13 +3,12 @@ package hu.epam.worktime.mvvmworkdroid.common.widgets.recyclerview;
 import java.util.Collections;
 import java.util.List;
 
-import com.hcom.android.BR;
-
 import android.databinding.DataBindingUtil;
 import android.databinding.ViewDataBinding;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
+import hu.epam.worktime.mvvmworkdroid.BR;
 
 /**
  * Common adapter which is used for each recyclerview when using databinding.

@@ -4,17 +4,17 @@ import android.content.Context;
 import android.content.res.Resources;
 import dagger.Component;
 import hu.epam.worktime.mvvmworkdroid.di.qualifiers.ApplicationContext;
-import hu.epam.worktime.mvvmworkdroid.modules.main.view.MainActivity;
+import hu.epam.worktime.mvvmworkdroid.di.scopes.PerActivity;
+import hu.epam.worktime.mvvmworkdroid.modules.main.router.MainActivity;
 import hu.hanprog.worktime.service.WorkServiceApi;
-
-import javax.inject.Singleton;
 
 /**
  *
  *
  * Created by Mihaly_Hunyady on 2016. 12. 01..
  */
-@Component(dependencies = ApplicationModule.class, modules = {ActivityModule.class, ApiModule.class})
+@PerActivity
+@Component(dependencies = ApplicationComponent.class, modules = {ActivityModule.class, ApiModule.class})
 public interface MainActivityComponent {
     void inject(MainActivity mainActivity);
 
@@ -38,6 +38,7 @@ public interface MainActivityComponent {
 
         public static MainActivityComponent buildComponent(MainActivity activity) {
             activityComponent = DaggerMainActivityComponent.builder()
+                    .applicationComponent(ApplicationComponent.Injector.getComponent())
                     .activityModule(new ActivityModule(activity))
                     .apiModule(new ApiModule("http://hunyady.ddns.net:8015/"))
                     .build();

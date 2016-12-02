@@ -3,12 +3,12 @@ package hu.epam.worktime.mvvmworkdroid.common.widgets.recyclerview;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.hcom.android.modules.common.presenter.recycleview.decoration.SpacesItemDecorationForGridLayoutManager;
 
 import android.content.res.TypedArray;
 import android.databinding.BindingAdapter;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import hu.epam.worktime.mvvmworkdroid.common.widgets.recyclerview.decorator.SpacesItemDecorationForGridLayoutManager;
 
 /**
  * BindingAdapter which defines custom binding for recyclerview. It helps to avoid boilerplate codes by providing the opportunity to

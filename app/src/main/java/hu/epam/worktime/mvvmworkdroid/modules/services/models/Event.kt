@@ -1,5 +1,4 @@
-package hu.hanprog.worktime.service.timeevent.model
-
+package hu.epam.worktime.mvvmworkdroid.modules.services.models
 data class Event(val userRef: Int, val event: Int, val date: String) {
     companion object {
         val ARRIVE: Int = 1

@@ -1,6 +1,4 @@
-package hu.hanprog.worktime.service.model
-
-import hu.hanprog.worktime.service.work.model.WorkTime
+package hu.epam.worktime.mvvmworkdroid.modules.services.models
 import org.threeten.bp.LocalTime
 
 data class WorkingStatistics(val dailyWorkTime: LocalTime,
