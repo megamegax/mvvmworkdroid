@@ -21,17 +21,17 @@
  * THE SOFTWARE.
  */
 
-package hu.epam.worktime.mvvmworkdroid.thirdparty.gsonjavatime
+package hu.epam.worktime.mvvmworkdroid.common.gsonjavatime
 
 import com.google.gson.*
-import org.threeten.bp.Instant
+import org.threeten.bp.ZonedDateTime
 import org.threeten.bp.format.DateTimeFormatter
 import java.lang.reflect.Type
 
 /**
- * GSON serialiser/deserialiser for converting [Instant] objects.
+ * GSON serialiser/deserialiser for converting [ZonedDateTime] objects.
  */
-class InstantConverter : JsonSerializer<Instant>, JsonDeserializer<Instant> {
+class ZonedDateTimeConverter : JsonSerializer<ZonedDateTime>, JsonDeserializer<ZonedDateTime> {
 
     /**
      * Gson invokes this call-back method during serialization when it encounters a field of the
@@ -51,7 +51,7 @@ class InstantConverter : JsonSerializer<Instant>, JsonDeserializer<Instant> {
      * *
      * @return a JsonElement corresponding to the specified object.
      */
-    override fun serialize(src: Instant, typeOfSrc: Type, context: JsonSerializationContext): JsonElement {
+    override fun serialize(src: ZonedDateTime, typeOfSrc: Type, context: JsonSerializationContext): JsonElement {
         return JsonPrimitive(FORMATTER.format(src))
     }
 
@@ -76,12 +76,12 @@ class InstantConverter : JsonSerializer<Instant>, JsonDeserializer<Instant> {
      * @throws JsonParseException if json is not in the expected format of `typeOfT`
      */
     @Throws(JsonParseException::class)
-    override fun deserialize(json: JsonElement, typeOfT: Type, context: JsonDeserializationContext): Instant {
-        return FORMATTER.parse<Instant>(json.asString, { Instant.from(it) })
+    override fun deserialize(json: JsonElement, typeOfT: Type, context: JsonDeserializationContext): ZonedDateTime {
+        return FORMATTER.parse<ZonedDateTime>(json.asString, { ZonedDateTime.from(it) })
     }
 
     companion object {
         /** Formatter.  */
-        private val FORMATTER = DateTimeFormatter.ISO_INSTANT
+        private val FORMATTER = DateTimeFormatter.ISO_DATE_TIME
     }
 }

@@ -21,7 +21,7 @@
  * THE SOFTWARE.
  */
 
-package hu.epam.worktime.mvvmworkdroid.thirdparty.gsonjavatime;
+package hu.epam.worktime.mvvmworkdroid.common.gsonjavatime;
 
 import java.lang.reflect.Type;
 

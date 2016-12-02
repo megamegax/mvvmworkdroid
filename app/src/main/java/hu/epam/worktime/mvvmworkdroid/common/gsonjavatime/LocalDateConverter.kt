@@ -21,17 +21,18 @@
  * THE SOFTWARE.
  */
 
-package hu.epam.worktime.mvvmworkdroid.thirdparty.gsonjavatime
+package hu.epam.worktime.mvvmworkdroid.common.gsonjavatime
 
 import com.google.gson.*
-import org.threeten.bp.LocalTime
+import org.threeten.bp.LocalDate
 import org.threeten.bp.format.DateTimeFormatter
+import org.threeten.bp.temporal.TemporalQuery
 import java.lang.reflect.Type
 
 /**
- * GSON serialiser/deserialiser for converting [LocalTime] objects.
+ * GSON serialiser/deserialiser for converting [LocalDate] objects.
  */
-class LocalTimeConverter : JsonSerializer<LocalTime>, JsonDeserializer<LocalTime> {
+class LocalDateConverter : JsonSerializer<LocalDate>, JsonDeserializer<LocalDate> {
 
     /**
      * Gson invokes this call-back method during serialization when it encounters a field of the
@@ -51,7 +52,7 @@ class LocalTimeConverter : JsonSerializer<LocalTime>, JsonDeserializer<LocalTime
      * *
      * @return a JsonElement corresponding to the specified object.
      */
-    override fun serialize(src: LocalTime, typeOfSrc: Type, context: JsonSerializationContext): JsonElement {
+    override fun serialize(src: LocalDate, typeOfSrc: Type, context: JsonSerializationContext): JsonElement {
         return JsonPrimitive(FORMATTER.format(src))
     }
 
@@ -76,12 +77,12 @@ class LocalTimeConverter : JsonSerializer<LocalTime>, JsonDeserializer<LocalTime
      * @throws JsonParseException if json is not in the expected format of `typeOfT`
      */
     @Throws(JsonParseException::class)
-    override fun deserialize(json: JsonElement, typeOfT: Type, context: JsonDeserializationContext): LocalTime {
-        return FORMATTER.parse<LocalTime>(json.asString, { LocalTime.from(it) })
+    override fun deserialize(json: JsonElement, typeOfT: Type, context: JsonDeserializationContext): LocalDate {
+        return FORMATTER.parse<LocalDate>(json.asString, TemporalQuery<LocalDate> { LocalDate.from(it) })
     }
 
     companion object {
         /** Formatter.  */
-        private val FORMATTER = DateTimeFormatter.ISO_LOCAL_TIME
+        private val FORMATTER = DateTimeFormatter.ISO_LOCAL_DATE
     }
 }

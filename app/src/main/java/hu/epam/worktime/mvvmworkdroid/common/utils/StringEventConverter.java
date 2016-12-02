@@ -1,4 +1,4 @@
-package hu.epam.worktime.mvvmworkdroid.utils;
+package hu.epam.worktime.mvvmworkdroid.common.utils;
 
 import android.content.res.Resources;
 import hu.epam.worktime.mvvmworkdroid.R;

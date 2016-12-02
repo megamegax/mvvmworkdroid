@@ -2,7 +2,7 @@ package hu.epam.worktime.mvvmworkdroid.di;
 
 import dagger.Module;
 import dagger.Provides;
-import hu.epam.worktime.mvvmworkdroid.thirdparty.gsonjavatime.Converters;
+import hu.epam.worktime.mvvmworkdroid.common.gsonjavatime.Converters;
 import hu.hanprog.worktime.service.WorkServiceApi;
 import okhttp3.OkHttpClient;
 import retrofit2.Retrofit;
