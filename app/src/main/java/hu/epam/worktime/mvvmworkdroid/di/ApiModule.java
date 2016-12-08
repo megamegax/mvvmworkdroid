@@ -22,8 +22,7 @@ public class ApiModule {
 
     @Provides
     GsonBuilder provideGsonBuilder() {
-        GsonBuilder gsonBuilder = new GsonBuilder();
-        return gsonBuilder;
+        return new GsonBuilder();
     }
 
     @Provides
