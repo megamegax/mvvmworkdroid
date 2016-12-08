@@ -1,6 +1,7 @@
 package hu.epam.worktime.mvvmworkdroid.modules.main.viewmodel;
 
 import android.databinding.BaseObservable;
+import hu.epam.worktime.mvvmworkdroid.BR;
 import hu.epam.worktime.mvvmworkdroid.common.widgets.recyclerview.ListItemViewModel;
 import hu.epam.worktime.mvvmworkdroid.modules.main.model.MainModel;
 import hu.epam.worktime.mvvmworkdroid.modules.main.router.MainRouter;
@@ -49,7 +50,13 @@ public class MainViewModel extends BaseObservable implements MainModel.ModelCall
     }
 
     private List<ListItemViewModel> transformToItemViewModels(List<WorkTime> workTimes) {
-        return null;
+        List<ListItemViewModel> itemViewModels = new ArrayList<>();
+        for (WorkTime workTime : workTimes) {
+            WorkTimeViewModel workTimeViewModel = new WorkTimeViewModel(router);
+            workTimeViewModel.setWorkTime(workTime);
+            itemViewModels.add(workTimeViewModel);
+        }
+        return itemViewModels;
     }
 
     private void setWorkTimeItemViewModels(List<ListItemViewModel> workTimeItemViewModels) {

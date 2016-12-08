@@ -1,4 +1,4 @@
-package hu.hanprog.worktime.service
+package hu.epam.worktime.mvvmworkdroid.modules.services
 
 
 import hu.epam.worktime.mvvmworkdroid.modules.services.models.Event
@@ -19,5 +19,5 @@ interface WorkServiceApi {
     fun addTimeEvent(@Body event: Event): Call<Void>
 
     @GET("workdays")
-    fun workDays():Call<List<WorkDay>>
+    fun workDays(): Call<List<WorkDay>>
 }

@@ -6,7 +6,8 @@ import dagger.Component;
 import hu.epam.worktime.mvvmworkdroid.di.qualifiers.ApplicationContext;
 import hu.epam.worktime.mvvmworkdroid.di.scopes.PerActivity;
 import hu.epam.worktime.mvvmworkdroid.modules.main.router.MainActivity;
-import hu.hanprog.worktime.service.WorkServiceApi;
+import hu.epam.worktime.mvvmworkdroid.modules.main.viewmodel.MainViewModel;
+import hu.epam.worktime.mvvmworkdroid.modules.services.WorkServiceApi;
 
 /**
  *
@@ -14,8 +15,9 @@ import hu.hanprog.worktime.service.WorkServiceApi;
  * Created by Mihaly_Hunyady on 2016. 12. 01..
  */
 @PerActivity
-@Component(dependencies = ApplicationComponent.class, modules = {ActivityModule.class, ApiModule.class})
+@Component(dependencies = ApplicationComponent.class, modules = {MainActivityModule.class, ActivityModule.class})
 public interface MainActivityComponent {
+
     void inject(MainActivity mainActivity);
 
     Resources resources();
@@ -24,6 +26,8 @@ public interface MainActivityComponent {
     Context context();
 
     WorkServiceApi workServiceApi();
+
+    MainViewModel mainViewModel();
 
     /**
      * Injector class for injecting the component into the activity.
@@ -40,7 +44,7 @@ public interface MainActivityComponent {
             activityComponent = DaggerMainActivityComponent.builder()
                     .applicationComponent(ApplicationComponent.Injector.getComponent())
                     .activityModule(new ActivityModule(activity))
-                    .apiModule(new ApiModule("http://hunyady.ddns.net:8015/"))
+                    .mainActivityModule(new MainActivityModule(activity))
                     .build();
             return activityComponent;
         }

@@ -1,5 +1,7 @@
 package hu.epam.worktime.mvvmworkdroid.modules.main.router;
 
+import hu.epam.worktime.mvvmworkdroid.modules.services.models.WorkTime;
+
 /**
  *
  *
@@ -7,6 +9,7 @@ package hu.epam.worktime.mvvmworkdroid.modules.main.router;
  */
 
 public interface MainRouter {
-    void openDetails();
+    void openDetails(WorkTime workTime);
+
     void openNewEntry();
 }

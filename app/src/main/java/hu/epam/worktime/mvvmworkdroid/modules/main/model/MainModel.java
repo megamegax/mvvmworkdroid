@@ -1,8 +1,8 @@
 package hu.epam.worktime.mvvmworkdroid.modules.main.model;
 
 import android.util.Log;
+import hu.epam.worktime.mvvmworkdroid.modules.services.WorkServiceApi;
 import hu.epam.worktime.mvvmworkdroid.modules.services.models.WorkTime;
-import hu.hanprog.worktime.service.WorkServiceApi;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;

@@ -3,12 +3,12 @@ package hu.epam.worktime.mvvmworkdroid.di;
 import dagger.Module;
 import dagger.Provides;
 import hu.epam.worktime.mvvmworkdroid.common.gsonjavatime.Converters;
-import hu.hanprog.worktime.service.WorkServiceApi;
+import hu.epam.worktime.mvvmworkdroid.common.utils.ConstValues;
+import hu.epam.worktime.mvvmworkdroid.modules.services.WorkServiceApi;
 import okhttp3.OkHttpClient;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-import javax.inject.Singleton;
 import com.google.gson.GsonBuilder;
 
 /**
@@ -19,12 +19,6 @@ import com.google.gson.GsonBuilder;
 
 @Module
 public class ApiModule {
-
-    private String mBaseUrl;
-
-    public ApiModule(String mBaseUrl) {
-        this.mBaseUrl = mBaseUrl;
-    }
 
     @Provides
     GsonBuilder provideGsonBuilder() {
@@ -47,7 +41,7 @@ public class ApiModule {
     WorkServiceApi provideWorkService(GsonConverterFactory gsonConverterFactory, OkHttpClient okHttpClient) {
         return new Retrofit.Builder()
                 .addConverterFactory(gsonConverterFactory)
-                .baseUrl(mBaseUrl)
+                .baseUrl(ConstValues.WORK_SERVICE_BASE_URL)
                 .client(okHttpClient)
                 .build().create(WorkServiceApi.class);
     }

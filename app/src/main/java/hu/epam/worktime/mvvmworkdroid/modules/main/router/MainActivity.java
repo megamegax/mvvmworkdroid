@@ -1,6 +1,7 @@
 package hu.epam.worktime.mvvmworkdroid.modules.main.router;
 
 import android.content.Intent;
+import android.databinding.ViewDataBinding;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
@@ -10,16 +11,23 @@ import android.view.Menu;
 import android.view.MenuItem;
 import hu.epam.worktime.mvvmworkdroid.R;
 import hu.epam.worktime.mvvmworkdroid.di.MainActivityComponent;
+import hu.epam.worktime.mvvmworkdroid.modules.details.view.DetailsActivity;
+import hu.epam.worktime.mvvmworkdroid.modules.main.viewmodel.MainViewModel;
 import hu.epam.worktime.mvvmworkdroid.modules.save.view.SaveTimeActivity;
+import hu.epam.worktime.mvvmworkdroid.modules.services.models.WorkTime;
 import hu.hanprog.worktime.service.WorkServiceApi;
 
 import javax.inject.Inject;
 
 public class MainActivity extends AppCompatActivity implements MainRouter {
 
+    private MainActivityComponent component;
+
     @Inject
     WorkServiceApi workServiceApi;
-    private MainActivityComponent component;
+
+    @Inject
+    MainViewModel mainViewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,14 +36,7 @@ public class MainActivity extends AppCompatActivity implements MainRouter {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         inject();
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(MainActivity.this, SaveTimeActivity.class);
-                startActivity(intent);
-            }
-        });
+
     }
 
     private void inject() {
@@ -66,12 +67,18 @@ public class MainActivity extends AppCompatActivity implements MainRouter {
     }
 
     @Override
-    public void openDetails() {
-
+    public void openDetails(WorkTime workTime) {
+        Intent intent = new Intent(MainActivity.this, DetailsActivity.class);
+        startActivity(intent);
     }
 
     @Override
     public void openNewEntry() {
+        Intent intent = new Intent(MainActivity.this, SaveTimeActivity.class);
+        startActivity(intent);
+    }
 
+    public void addFabClicked(View view) {
+        openNewEntry();
     }
 }
