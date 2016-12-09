@@ -33,6 +33,6 @@
                 app:itemLayout="@{@layout/content_row_main}"
                 app:itemSpacing="@{@dimen/single_padding_without_shadow}"
                 app:layout_behavior="@string/appbar_scrolling_view_behavior"
-                app:columns="1"/>
+                app:columns="@{1}"/>
     </RelativeLayout>
 </layout>

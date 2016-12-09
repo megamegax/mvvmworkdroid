@@ -1,6 +1,7 @@
 package hu.epam.worktime.mvvmworkdroid.modules.main.router;
 
 import android.content.Intent;
+import android.databinding.DataBindingUtil;
 import android.databinding.ViewDataBinding;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -10,6 +11,7 @@ import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 import hu.epam.worktime.mvvmworkdroid.R;
+import hu.epam.worktime.mvvmworkdroid.databinding.ContentMainBinding;
 import hu.epam.worktime.mvvmworkdroid.di.MainActivityComponent;
 import hu.epam.worktime.mvvmworkdroid.modules.details.view.DetailsActivity;
 import hu.epam.worktime.mvvmworkdroid.modules.main.viewmodel.MainViewModel;
@@ -32,10 +34,12 @@ public class MainActivity extends AppCompatActivity implements MainRouter {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        inject();
+        ContentMainBinding viewDataBinding = DataBindingUtil.setContentView(this, R.layout.content_main);
+        viewDataBinding.setViewModel1(mainViewModel);
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        inject();
 
     }
 

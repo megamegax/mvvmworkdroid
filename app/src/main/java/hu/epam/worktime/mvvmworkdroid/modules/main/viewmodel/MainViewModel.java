@@ -1,6 +1,7 @@
 package hu.epam.worktime.mvvmworkdroid.modules.main.viewmodel;
 
 import android.databinding.BaseObservable;
+import android.databinding.Bindable;
 import android.util.Log;
 import hu.epam.worktime.mvvmworkdroid.BR;
 import hu.epam.worktime.mvvmworkdroid.common.mvvm.ViewModel;
@@ -24,6 +25,7 @@ public class MainViewModel extends BaseObservable implements ViewModel, MainMode
     private final MainModel model;
     private List<WorkTime> workTimes;
     private boolean loading;
+    @Bindable
     private List<ListItemViewModel> workTimeItemViewModels;
     private final static String TAG = "MainViewModel";
 
@@ -73,7 +75,7 @@ public class MainViewModel extends BaseObservable implements ViewModel, MainMode
     private void setWorkTimeItemViewModels(List<ListItemViewModel> workTimeItemViewModels) {
         this.workTimeItemViewModels = workTimeItemViewModels;
         Log.d(TAG, workTimeItemViewModels.size() + "");
-        notifyPropertyChanged(BR.viewModel1);
+        notifyPropertyChanged(BR.workTimeItemViewModels);
     }
 
     @Override
@@ -98,6 +100,5 @@ public class MainViewModel extends BaseObservable implements ViewModel, MainMode
     public List<ListItemViewModel> getWorkTimeItemViewModels() {
         return workTimeItemViewModels;
     }
-
 
 }
