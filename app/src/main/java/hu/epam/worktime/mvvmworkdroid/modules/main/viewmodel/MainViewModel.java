@@ -1,7 +1,9 @@
 package hu.epam.worktime.mvvmworkdroid.modules.main.viewmodel;
 
 import android.databinding.BaseObservable;
+import android.util.Log;
 import hu.epam.worktime.mvvmworkdroid.BR;
+import hu.epam.worktime.mvvmworkdroid.common.mvvm.ViewModel;
 import hu.epam.worktime.mvvmworkdroid.common.widgets.recyclerview.ListItemViewModel;
 import hu.epam.worktime.mvvmworkdroid.modules.main.model.MainModel;
 import hu.epam.worktime.mvvmworkdroid.modules.main.router.MainRouter;
@@ -16,26 +18,24 @@ import java.util.List;
  * Created by Mihaly_Hunyady on 2016. 12. 02..
  */
 
-public class MainViewModel extends BaseObservable implements MainModel.ModelCallback {
+public class MainViewModel extends BaseObservable implements ViewModel, MainModel.ModelCallback {
 
     private final MainRouter router;
     private final MainModel model;
     private List<WorkTime> workTimes;
     private boolean loading;
     private List<ListItemViewModel> workTimeItemViewModels;
+    private final static String TAG = "MainViewModel";
 
     public MainViewModel(MainModel model, MainRouter router) {
         this.model = model;
         this.router = router;
-
-        initMainModel(model);
+        init(model);
     }
 
-    private void initMainModel(MainModel model) {
+    private void init(MainModel model) {
+        Log.d(TAG, "elindult");
         model.setCallback(this);
-        if (workTimes == null || workTimes.isEmpty()) {
-            onWorkTimeLoaded(new ArrayList<WorkTime>());
-        }
         loadWorkTimes(model);
     }
 
@@ -45,7 +45,18 @@ public class MainViewModel extends BaseObservable implements MainModel.ModelCall
     }
 
     @Override
+    public void onStop() {
+        model.setCallback(null);
+    }
+
+    @Override
+    public void onStart() {
+        model.setCallback(this);
+    }
+
+    @Override
     public void onWorkTimeLoaded(List<WorkTime> workTimes) {
+        this.workTimes = workTimes;
         setWorkTimeItemViewModels(transformToItemViewModels(workTimes));
     }
 
@@ -61,7 +72,8 @@ public class MainViewModel extends BaseObservable implements MainModel.ModelCall
 
     private void setWorkTimeItemViewModels(List<ListItemViewModel> workTimeItemViewModels) {
         this.workTimeItemViewModels = workTimeItemViewModels;
-        notifyPropertyChanged(BR.viewModel);
+        Log.d(TAG, workTimeItemViewModels.size() + "");
+        notifyPropertyChanged(BR.viewModel1);
     }
 
     @Override
@@ -72,6 +84,7 @@ public class MainViewModel extends BaseObservable implements MainModel.ModelCall
     @Override
     public void onWorkTimeLoadCompleted() {
         setLoading(false);
+        onWorkTimeLoaded(model.getWorkTimes());
     }
 
     public void setLoading(boolean loading) {
@@ -85,4 +98,6 @@ public class MainViewModel extends BaseObservable implements MainModel.ModelCall
     public List<ListItemViewModel> getWorkTimeItemViewModels() {
         return workTimeItemViewModels;
     }
+
+
 }

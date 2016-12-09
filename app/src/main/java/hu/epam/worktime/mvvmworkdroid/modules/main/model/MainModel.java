@@ -1,6 +1,7 @@
 package hu.epam.worktime.mvvmworkdroid.modules.main.model;
 
 import android.util.Log;
+import hu.epam.worktime.mvvmworkdroid.common.mvvm.Model;
 import hu.epam.worktime.mvvmworkdroid.modules.services.WorkServiceApi;
 import hu.epam.worktime.mvvmworkdroid.modules.services.models.WorkTime;
 import retrofit2.Call;
@@ -16,7 +17,7 @@ import java.util.List;
  * Created by Mihaly_Hunyady on 2016. 12. 02..
  */
 
-public class MainModel {
+public class MainModel implements Model {
     private ModelCallback callback;
     private final WorkServiceApi workServiceApi;
     private List<WorkTime> workTimes = new ArrayList<>();
@@ -40,6 +41,8 @@ public class MainModel {
     }
 
     private void onResult(Response<List<WorkTime>> workTimes) {
+        this.workTimes = workTimes.body();
+        onCompleted();
         Log.d("WorkDroid", "ok");
     }
 
