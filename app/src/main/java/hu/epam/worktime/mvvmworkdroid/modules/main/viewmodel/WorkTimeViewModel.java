@@ -27,13 +27,17 @@ public class WorkTimeViewModel extends ListItemViewModel {
     }
 
     @Bindable
-    public String getTitle() {
+    public String getDate() {
         return workTime.getDate().format(DateTimeFormatter.BASIC_ISO_DATE);
+    }
+
+    @Bindable
+    public String getWorkHours() {
+        return "00:00:00";
     }
 
     public void onClick(View v) {
         router.openDetails(workTime);
-        //TODO:Check it out.
     }
 
     @Override

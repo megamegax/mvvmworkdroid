@@ -3,6 +3,7 @@
 <layout>
 
     <data>
+
         <variable
                 name="viewModel"
                 type="hu.epam.worktime.mvvmworkdroid.common.widgets.recyclerview.ListItemViewModel"/>
@@ -24,9 +25,8 @@
             tools:context=".modules.main.router.MainActivity">
 
         <android.support.v7.widget.RecyclerView
-
                 android:layout_width="match_parent"
-                android:layout_height="377dp"
+                android:layout_height="match_parent"
                 android:layout_alignParentBottom="true"
                 android:layout_alignParentTop="true"
                 android:layout_alignParentStart="true"
