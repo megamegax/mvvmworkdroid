@@ -7,7 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import hu.epam.worktime.mvvmworkdroid.R;
-import hu.hanprog.worktime.service.WorkServiceApi;
+import hu.epam.worktime.mvvmworkdroid.modules.services.WorkServiceApi;
 
 import javax.inject.Inject;
 

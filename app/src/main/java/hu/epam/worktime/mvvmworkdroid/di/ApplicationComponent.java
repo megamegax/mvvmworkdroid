@@ -6,7 +6,7 @@ import android.content.res.Resources;
 import dagger.Component;
 import hu.epam.worktime.mvvmworkdroid.WorkDroidApp;
 import hu.epam.worktime.mvvmworkdroid.di.qualifiers.ApplicationContext;
-import hu.hanprog.worktime.service.WorkServiceApi;
+import hu.epam.worktime.mvvmworkdroid.modules.services.WorkServiceApi;
 
 import javax.inject.Singleton;
 

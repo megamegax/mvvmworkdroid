@@ -14,8 +14,8 @@ import hu.epam.worktime.mvvmworkdroid.di.MainActivityComponent;
 import hu.epam.worktime.mvvmworkdroid.modules.details.view.DetailsActivity;
 import hu.epam.worktime.mvvmworkdroid.modules.main.viewmodel.MainViewModel;
 import hu.epam.worktime.mvvmworkdroid.modules.save.view.SaveTimeActivity;
+import hu.epam.worktime.mvvmworkdroid.modules.services.WorkServiceApi;
 import hu.epam.worktime.mvvmworkdroid.modules.services.models.WorkTime;
-import hu.hanprog.worktime.service.WorkServiceApi;
 
 import javax.inject.Inject;
 
