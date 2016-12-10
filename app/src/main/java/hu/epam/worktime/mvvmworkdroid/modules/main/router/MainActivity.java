@@ -2,16 +2,14 @@ package hu.epam.worktime.mvvmworkdroid.modules.main.router;
 
 import android.content.Intent;
 import android.databinding.DataBindingUtil;
-import android.databinding.ViewDataBinding;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 import hu.epam.worktime.mvvmworkdroid.R;
-import hu.epam.worktime.mvvmworkdroid.databinding.ContentMainBinding;
+import hu.epam.worktime.mvvmworkdroid.databinding.ActivityMainBinding;
 import hu.epam.worktime.mvvmworkdroid.di.MainActivityComponent;
 import hu.epam.worktime.mvvmworkdroid.modules.details.view.DetailsActivity;
 import hu.epam.worktime.mvvmworkdroid.modules.main.viewmodel.MainViewModel;
@@ -23,11 +21,6 @@ import javax.inject.Inject;
 
 public class MainActivity extends AppCompatActivity implements MainRouter {
 
-    private MainActivityComponent component;
-
-    @Inject
-    WorkServiceApi workServiceApi;
-
     @Inject
     MainViewModel mainViewModel;
 
@@ -35,16 +28,15 @@ public class MainActivity extends AppCompatActivity implements MainRouter {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         inject();
-        ContentMainBinding viewDataBinding = DataBindingUtil.setContentView(this, R.layout.content_main);
+        ActivityMainBinding viewDataBinding = DataBindingUtil.setContentView(this, R.layout.activity_main);
         viewDataBinding.setViewModel1(mainViewModel);
-
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
     }
 
     private void inject() {
-        component = MainActivityComponent.Injector.buildComponent(this);
+        MainActivityComponent component = MainActivityComponent.Injector.buildComponent(this);
         component.inject(this);
     }
 

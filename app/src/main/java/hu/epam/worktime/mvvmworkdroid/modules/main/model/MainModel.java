@@ -43,7 +43,6 @@ public class MainModel implements Model {
     private void onResult(Response<List<WorkTime>> workTimes) {
         this.workTimes = workTimes.body();
         onCompleted();
-        Log.d("WorkDroid", "ok");
     }
 
     private void onError(Throwable throwable) {
