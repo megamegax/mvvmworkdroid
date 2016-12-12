@@ -33,7 +33,7 @@ public class WorkTimeViewModel extends ListItemViewModel {
 
     @Bindable
     public String getWorkHours() {
-        return "00:00:00";
+        return workTime.getNettoWork().format(DateTimeFormatter.ISO_LOCAL_TIME);
     }
 
     public void onClick(View v) {

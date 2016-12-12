@@ -1,4 +1,4 @@
-package hu.hanprog.worktime.workdroid.preferences.models
+package hu.epam.worktime.mvvmworkdroid.modules.services.models.preferences
 
 import com.chibatching.kotpref.KotprefModel
 

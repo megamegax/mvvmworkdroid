@@ -8,6 +8,7 @@ import hu.epam.worktime.mvvmworkdroid.di.scopes.PerActivity;
 import hu.epam.worktime.mvvmworkdroid.modules.main.router.MainActivity;
 import hu.epam.worktime.mvvmworkdroid.modules.main.viewmodel.MainViewModel;
 import hu.epam.worktime.mvvmworkdroid.modules.services.WorkServiceApi;
+import hu.epam.worktime.mvvmworkdroid.modules.services.worker.CalculatorService;
 
 /**
  *
@@ -24,6 +25,8 @@ public interface MainActivityComponent {
 
     @ApplicationContext
     Context context();
+
+    CalculatorService calculatorService();
 
     WorkServiceApi workServiceApi();
 

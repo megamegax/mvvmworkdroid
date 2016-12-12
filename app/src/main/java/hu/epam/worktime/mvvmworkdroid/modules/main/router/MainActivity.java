@@ -16,6 +16,7 @@ import hu.epam.worktime.mvvmworkdroid.modules.main.viewmodel.MainViewModel;
 import hu.epam.worktime.mvvmworkdroid.modules.save.view.SaveTimeActivity;
 import hu.epam.worktime.mvvmworkdroid.modules.services.WorkServiceApi;
 import hu.epam.worktime.mvvmworkdroid.modules.services.models.WorkTime;
+import hu.epam.worktime.mvvmworkdroid.modules.services.worker.CalculatorService;
 
 import javax.inject.Inject;
 
@@ -23,6 +24,9 @@ public class MainActivity extends AppCompatActivity implements MainRouter {
 
     @Inject
     MainViewModel mainViewModel;
+
+    @Inject
+    CalculatorService calculatorService;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

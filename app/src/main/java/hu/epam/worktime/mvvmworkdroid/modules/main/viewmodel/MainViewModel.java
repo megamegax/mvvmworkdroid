@@ -9,6 +9,8 @@ import hu.epam.worktime.mvvmworkdroid.common.widgets.recyclerview.ListItemViewMo
 import hu.epam.worktime.mvvmworkdroid.modules.main.model.MainModel;
 import hu.epam.worktime.mvvmworkdroid.modules.main.router.MainRouter;
 import hu.epam.worktime.mvvmworkdroid.modules.services.models.WorkTime;
+import hu.epam.worktime.mvvmworkdroid.modules.services.models.WorkingStatistics;
+import hu.epam.worktime.mvvmworkdroid.modules.services.worker.CalculatorService;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,10 +22,9 @@ import java.util.List;
  */
 
 public class MainViewModel extends BaseObservable implements ViewModel, MainModel.ModelCallback {
-
     private final MainRouter router;
     private final MainModel model;
-    private List<WorkTime> workTimes;
+    private WorkingStatistics workTimes;
     private boolean loading;
     @Bindable
     private List<ListItemViewModel> workTimeItemViewModels;
@@ -57,14 +58,14 @@ public class MainViewModel extends BaseObservable implements ViewModel, MainMode
     }
 
     @Override
-    public void onWorkTimeLoaded(List<WorkTime> workTimes) {
+    public void onWorkTimeLoaded(WorkingStatistics workTimes) {
         this.workTimes = workTimes;
         setWorkTimeItemViewModels(transformToItemViewModels(workTimes));
     }
 
-    private List<ListItemViewModel> transformToItemViewModels(List<WorkTime> workTimes) {
+    private List<ListItemViewModel> transformToItemViewModels(WorkingStatistics workTimes) {
         List<ListItemViewModel> itemViewModels = new ArrayList<>();
-        for (WorkTime workTime : workTimes) {
+        for (WorkTime workTime : workTimes.getWorkTimes()) {
             WorkTimeViewModel workTimeViewModel = new WorkTimeViewModel(router);
             workTimeViewModel.setWorkTime(workTime);
             itemViewModels.add(workTimeViewModel);

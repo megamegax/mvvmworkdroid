@@ -7,6 +7,9 @@ import hu.epam.worktime.mvvmworkdroid.modules.main.router.MainActivity;
 import hu.epam.worktime.mvvmworkdroid.modules.main.router.MainRouter;
 import hu.epam.worktime.mvvmworkdroid.modules.main.viewmodel.MainViewModel;
 import hu.epam.worktime.mvvmworkdroid.modules.services.WorkServiceApi;
+import hu.epam.worktime.mvvmworkdroid.modules.services.worker.CalculatorService;
+
+import javax.inject.Singleton;
 
 /**
  *
@@ -23,8 +26,8 @@ public class MainActivityModule {
     }
 
     @Provides
-    MainModel providesMainModel(WorkServiceApi workServiceApi) {
-        return new MainModel(workServiceApi);
+    MainModel providesMainModel(WorkServiceApi workServiceApi,CalculatorService calculatorService) {
+        return new MainModel(workServiceApi,calculatorService);
     }
 
     @Provides
@@ -37,4 +40,8 @@ public class MainActivityModule {
         return activity;
     }
 
+    @Provides
+    CalculatorService provideCalculatorService() {
+        return new CalculatorService();
+    }
 }
