@@ -11,21 +11,21 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
  *
  *
- * Created by Mihaly_Hunyady on 2016. 12. 02..
+ * Created by Mihaly_Hunyady on 2016. 12. 12..
  */
 
 public class MainModel implements Model {
     private final CalculatorService calculatorService;
-    private ModelCallback callback;
+    private MainModel.ModelCallback callback;
     private final WorkServiceApi workServiceApi;
     private WorkingStatistics workingStatistics;
     private List<WorkTime> workTimes;
+
 
     public MainModel(WorkServiceApi workServiceApi, CalculatorService calculatorService) {
         this.workServiceApi = workServiceApi;

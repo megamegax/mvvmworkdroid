@@ -6,11 +6,11 @@ import android.util.Log;
 import hu.epam.worktime.mvvmworkdroid.BR;
 import hu.epam.worktime.mvvmworkdroid.common.mvvm.ViewModel;
 import hu.epam.worktime.mvvmworkdroid.common.widgets.recyclerview.ListItemViewModel;
+import hu.epam.worktime.mvvmworkdroid.modules.main.model.MainListModel;
 import hu.epam.worktime.mvvmworkdroid.modules.main.model.MainModel;
 import hu.epam.worktime.mvvmworkdroid.modules.main.router.MainRouter;
 import hu.epam.worktime.mvvmworkdroid.modules.services.models.WorkTime;
 import hu.epam.worktime.mvvmworkdroid.modules.services.models.WorkingStatistics;
-import hu.epam.worktime.mvvmworkdroid.modules.services.worker.CalculatorService;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,8 +26,7 @@ public class MainViewModel extends BaseObservable implements ViewModel, MainMode
     private final MainModel model;
     private WorkingStatistics workTimes;
     private boolean loading;
-    @Bindable
-    private List<ListItemViewModel> workTimeItemViewModels;
+
     private final static String TAG = "MainViewModel";
 
     public MainViewModel(MainModel model, MainRouter router) {
@@ -60,24 +59,8 @@ public class MainViewModel extends BaseObservable implements ViewModel, MainMode
     @Override
     public void onWorkTimeLoaded(WorkingStatistics workTimes) {
         this.workTimes = workTimes;
-        setWorkTimeItemViewModels(transformToItemViewModels(workTimes));
     }
 
-    private List<ListItemViewModel> transformToItemViewModels(WorkingStatistics workTimes) {
-        List<ListItemViewModel> itemViewModels = new ArrayList<>();
-        for (WorkTime workTime : workTimes.getWorkTimes()) {
-            WorkTimeViewModel workTimeViewModel = new WorkTimeViewModel(router);
-            workTimeViewModel.setWorkTime(workTime);
-            itemViewModels.add(workTimeViewModel);
-        }
-        return itemViewModels;
-    }
-
-    private void setWorkTimeItemViewModels(List<ListItemViewModel> workTimeItemViewModels) {
-        this.workTimeItemViewModels = workTimeItemViewModels;
-        Log.d(TAG, workTimeItemViewModels.size() + "");
-        notifyPropertyChanged(BR.workTimeItemViewModels);
-    }
 
     @Override
     public void onWorkTimeLoadError() {
@@ -98,8 +81,5 @@ public class MainViewModel extends BaseObservable implements ViewModel, MainMode
         return loading;
     }
 
-    public List<ListItemViewModel> getWorkTimeItemViewModels() {
-        return workTimeItemViewModels;
-    }
 
 }

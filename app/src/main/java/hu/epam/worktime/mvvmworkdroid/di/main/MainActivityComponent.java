@@ -1,8 +1,10 @@
-package hu.epam.worktime.mvvmworkdroid.di;
+package hu.epam.worktime.mvvmworkdroid.di.main;
 
 import android.content.Context;
 import android.content.res.Resources;
 import dagger.Component;
+import hu.epam.worktime.mvvmworkdroid.di.ActivityModule;
+import hu.epam.worktime.mvvmworkdroid.di.ApplicationComponent;
 import hu.epam.worktime.mvvmworkdroid.di.qualifiers.ApplicationContext;
 import hu.epam.worktime.mvvmworkdroid.di.scopes.PerActivity;
 import hu.epam.worktime.mvvmworkdroid.modules.main.router.MainActivity;

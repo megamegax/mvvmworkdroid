@@ -3,6 +3,10 @@ package hu.epam.worktime.mvvmworkdroid.modules.main.router;
 import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.view.PagerAdapter;
+import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
@@ -10,11 +14,12 @@ import android.view.Menu;
 import android.view.MenuItem;
 import hu.epam.worktime.mvvmworkdroid.R;
 import hu.epam.worktime.mvvmworkdroid.databinding.ActivityMainBinding;
-import hu.epam.worktime.mvvmworkdroid.di.MainActivityComponent;
+import hu.epam.worktime.mvvmworkdroid.di.main.MainActivityComponent;
 import hu.epam.worktime.mvvmworkdroid.modules.details.view.DetailsActivity;
+import hu.epam.worktime.mvvmworkdroid.modules.main.pages.MainListFragment;
+import hu.epam.worktime.mvvmworkdroid.modules.main.viewmodel.MainListViewModel;
 import hu.epam.worktime.mvvmworkdroid.modules.main.viewmodel.MainViewModel;
 import hu.epam.worktime.mvvmworkdroid.modules.save.view.SaveTimeActivity;
-import hu.epam.worktime.mvvmworkdroid.modules.services.WorkServiceApi;
 import hu.epam.worktime.mvvmworkdroid.modules.services.models.WorkTime;
 import hu.epam.worktime.mvvmworkdroid.modules.services.worker.CalculatorService;
 
@@ -24,6 +29,8 @@ public class MainActivity extends AppCompatActivity implements MainRouter {
 
     @Inject
     MainViewModel mainViewModel;
+    @Inject
+    MainListViewModel mainListViewModel;
 
     @Inject
     CalculatorService calculatorService;
@@ -33,10 +40,22 @@ public class MainActivity extends AppCompatActivity implements MainRouter {
         super.onCreate(savedInstanceState);
         inject();
         ActivityMainBinding viewDataBinding = DataBindingUtil.setContentView(this, R.layout.activity_main);
-        viewDataBinding.setViewModel1(mainViewModel);
+        // viewDataBinding.setViewModel(mainViewModel);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        ViewPager pager = (ViewPager) findViewById(R.id.viewpager);
+        PagerAdapter adapter = new FragmentPagerAdapter(getSupportFragmentManager()) {
+            @Override
+            public Fragment getItem(int position) {
+                return new MainListFragment();
+            }
 
+            @Override
+            public int getCount() {
+                return 1;
+            }
+        };
+        pager.setAdapter(adapter);
     }
 
     private void inject() {
@@ -80,5 +99,9 @@ public class MainActivity extends AppCompatActivity implements MainRouter {
 
     public void addFabClicked(View view) {
         openNewEntry();
+    }
+
+    public MainListViewModel getMainListViewModel() {
+        return mainListViewModel;
     }
 }

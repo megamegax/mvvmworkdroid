@@ -28,7 +28,7 @@ public class WorkTimeViewModel extends ListItemViewModel {
 
     @Bindable
     public String getDate() {
-        return workTime.getDate().format(DateTimeFormatter.BASIC_ISO_DATE);
+        return workTime.getDate().format(DateTimeFormatter.ISO_LOCAL_DATE);
     }
 
     @Bindable

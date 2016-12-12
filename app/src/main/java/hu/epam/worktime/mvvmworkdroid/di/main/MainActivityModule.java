@@ -1,15 +1,15 @@
-package hu.epam.worktime.mvvmworkdroid.di;
+package hu.epam.worktime.mvvmworkdroid.di.main;
 
 import dagger.Module;
 import dagger.Provides;
+import hu.epam.worktime.mvvmworkdroid.modules.main.model.MainListModel;
 import hu.epam.worktime.mvvmworkdroid.modules.main.model.MainModel;
 import hu.epam.worktime.mvvmworkdroid.modules.main.router.MainActivity;
 import hu.epam.worktime.mvvmworkdroid.modules.main.router.MainRouter;
+import hu.epam.worktime.mvvmworkdroid.modules.main.viewmodel.MainListViewModel;
 import hu.epam.worktime.mvvmworkdroid.modules.main.viewmodel.MainViewModel;
 import hu.epam.worktime.mvvmworkdroid.modules.services.WorkServiceApi;
 import hu.epam.worktime.mvvmworkdroid.modules.services.worker.CalculatorService;
-
-import javax.inject.Singleton;
 
 /**
  *
@@ -26,13 +26,22 @@ public class MainActivityModule {
     }
 
     @Provides
-    MainModel providesMainModel(WorkServiceApi workServiceApi,CalculatorService calculatorService) {
-        return new MainModel(workServiceApi,calculatorService);
+    MainModel providesMainModel(WorkServiceApi workServiceApi, CalculatorService calculatorService) {
+        return new MainModel(workServiceApi, calculatorService);
     }
 
     @Provides
     MainViewModel providesMainViewModel(MainModel model, MainRouter mainRouter) {
         return new MainViewModel(model, mainRouter);
+    }
+    @Provides
+    MainListModel providesMainListModel() {
+        return new MainListModel();
+    }
+
+    @Provides
+    MainListViewModel providesMainListViewModel(MainListModel model, MainRouter mainRouter) {
+        return new MainListViewModel(model, mainRouter);
     }
 
     @Provides
