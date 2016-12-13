@@ -8,11 +8,13 @@ import hu.epam.worktime.mvvmworkdroid.common.mvvm.ViewModel;
 import hu.epam.worktime.mvvmworkdroid.common.widgets.recyclerview.ListItemViewModel;
 import hu.epam.worktime.mvvmworkdroid.modules.main.model.MainListModel;
 import hu.epam.worktime.mvvmworkdroid.modules.main.model.MainModel;
+import hu.epam.worktime.mvvmworkdroid.modules.main.router.MainActivity;
 import hu.epam.worktime.mvvmworkdroid.modules.main.router.MainRouter;
 import hu.epam.worktime.mvvmworkdroid.modules.services.models.WorkTime;
 import hu.epam.worktime.mvvmworkdroid.modules.services.models.WorkingStatistics;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -59,8 +61,22 @@ public class MainViewModel extends BaseObservable implements ViewModel, MainMode
     @Override
     public void onWorkTimeLoaded(WorkingStatistics workTimes) {
         this.workTimes = workTimes;
+        Collections.sort(this.workTimes.getWorkTimes());
+        MainListViewModel mainListView = ((MainActivity) router).getMainListViewModel();
+
+        mainListView.setWorkTimeItemViewModels(transformToItemViewModels(this.workTimes.getWorkTimes()));
+
     }
 
+    private List<ListItemViewModel> transformToItemViewModels(List<WorkTime> workTimes) {
+        List<ListItemViewModel> itemViewModels = new ArrayList<>();
+        for (WorkTime workTime : workTimes) {
+            WorkTimeViewModel workTimeViewModel = new WorkTimeViewModel(router);
+            workTimeViewModel.setWorkTime(workTime);
+            itemViewModels.add(workTimeViewModel);
+        }
+        return itemViewModels;
+    }
 
     @Override
     public void onWorkTimeLoadError() {
@@ -80,6 +96,5 @@ public class MainViewModel extends BaseObservable implements ViewModel, MainMode
     public boolean isLoading() {
         return loading;
     }
-
 
 }

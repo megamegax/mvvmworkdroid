@@ -17,6 +17,7 @@ import hu.epam.worktime.mvvmworkdroid.databinding.ActivityMainBinding;
 import hu.epam.worktime.mvvmworkdroid.di.main.MainActivityComponent;
 import hu.epam.worktime.mvvmworkdroid.modules.details.view.DetailsActivity;
 import hu.epam.worktime.mvvmworkdroid.modules.main.pages.MainListFragment;
+import hu.epam.worktime.mvvmworkdroid.modules.main.pages.MainStatsFragment;
 import hu.epam.worktime.mvvmworkdroid.modules.main.viewmodel.MainListViewModel;
 import hu.epam.worktime.mvvmworkdroid.modules.main.viewmodel.MainViewModel;
 import hu.epam.worktime.mvvmworkdroid.modules.save.view.SaveTimeActivity;
@@ -47,12 +48,15 @@ public class MainActivity extends AppCompatActivity implements MainRouter {
         PagerAdapter adapter = new FragmentPagerAdapter(getSupportFragmentManager()) {
             @Override
             public Fragment getItem(int position) {
-                return new MainListFragment();
+                if (position == 0) {
+                    return new MainStatsFragment();
+                } else
+                    return new MainListFragment();
             }
 
             @Override
             public int getCount() {
-                return 1;
+                return 2;
             }
         };
         pager.setAdapter(adapter);
