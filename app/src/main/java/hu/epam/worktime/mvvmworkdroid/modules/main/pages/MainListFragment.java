@@ -7,8 +7,12 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import javax.inject.Inject;
+
 import hu.epam.worktime.mvvmworkdroid.R;
 import hu.epam.worktime.mvvmworkdroid.databinding.ActivityMainListBinding;
+import hu.epam.worktime.mvvmworkdroid.di.main.MainActivityComponent;
 import hu.epam.worktime.mvvmworkdroid.modules.main.router.MainActivity;
 import hu.epam.worktime.mvvmworkdroid.modules.main.viewmodel.MainListViewModel;
 
@@ -20,20 +24,30 @@ import hu.epam.worktime.mvvmworkdroid.modules.main.viewmodel.MainListViewModel;
 
 public class MainListFragment extends Fragment {
 
-    private MainListViewModel mainListView;
+    @Inject
+    MainListViewModel mainListViewModel;
+
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mainListView = ((MainActivity) getActivity()).getMainListViewModel();
+        mainListViewModel = ((MainActivity) getActivity()).getMainListViewModel();
     }
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         ActivityMainListBinding binding = DataBindingUtil.inflate(inflater, R.layout.activity_main_list, container, false);
-        binding.setViewModel(mainListView);
+        binding.setViewModel(mainListViewModel);
         return binding.getRoot();
     }
 
+    private void inject() {
+        MainActivityComponent component = MainActivityComponent.Injector.buildComponent(getMainActivity());
+        component.inject(getMainActivity());
+    }
+
+    private MainActivity getMainActivity() {
+        return (MainActivity) getActivity();
+    }
 }

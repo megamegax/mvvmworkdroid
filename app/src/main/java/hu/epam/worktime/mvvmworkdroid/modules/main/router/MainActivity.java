@@ -3,6 +3,7 @@ package hu.epam.worktime.mvvmworkdroid.modules.main.router;
 import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
+import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.PagerAdapter;
@@ -36,6 +37,10 @@ public class MainActivity extends AppCompatActivity implements MainRouter {
     @Inject
     CalculatorService calculatorService;
 
+    MainStatsFragment statsFragment;
+
+    MainListFragment listFragment;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,15 +48,37 @@ public class MainActivity extends AppCompatActivity implements MainRouter {
         ActivityMainBinding viewDataBinding = DataBindingUtil.setContentView(this, R.layout.activity_main);
         // viewDataBinding.setViewModel(mainViewModel);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
         setSupportActionBar(toolbar);
-        ViewPager pager = (ViewPager) findViewById(R.id.viewpager);
+        final ViewPager pager = (ViewPager) findViewById(R.id.viewpager);
+        statsFragment = new MainStatsFragment();
+        listFragment = new MainListFragment();
+
+        tabLayout.addTab(tabLayout.newTab().setText(getString(R.string.tab_stats)));
+        tabLayout.addTab(tabLayout.newTab().setText(getString(R.string.tab_list)));
+        pager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
+        tabLayout.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+            @Override
+            public void onTabSelected(TabLayout.Tab tab) {
+                pager.setCurrentItem(tab.getPosition());
+            }
+
+            @Override
+            public void onTabUnselected(TabLayout.Tab tab) {
+            }
+
+            @Override
+            public void onTabReselected(TabLayout.Tab tab) {
+
+            }
+        });
         PagerAdapter adapter = new FragmentPagerAdapter(getSupportFragmentManager()) {
             @Override
             public Fragment getItem(int position) {
                 if (position == 0) {
-                    return new MainStatsFragment();
+                    return statsFragment;
                 } else
-                    return new MainListFragment();
+                    return listFragment;
             }
 
             @Override

@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import hu.epam.worktime.mvvmworkdroid.R;
 import hu.epam.worktime.mvvmworkdroid.databinding.ActivityMainListBinding;
 import hu.epam.worktime.mvvmworkdroid.databinding.ActivityMainStatsBinding;
+import hu.epam.worktime.mvvmworkdroid.di.main.MainActivityComponent;
 import hu.epam.worktime.mvvmworkdroid.modules.main.model.MainListModel;
 import hu.epam.worktime.mvvmworkdroid.modules.main.model.MainStatsModel;
 import hu.epam.worktime.mvvmworkdroid.modules.main.router.MainActivity;
@@ -36,5 +37,14 @@ public class MainStatsFragment extends Fragment {
         ActivityMainStatsBinding binding = DataBindingUtil.inflate(inflater, R.layout.activity_main_stats, container, false);
         binding.setViewModel(new MainStatViewModel(new MainStatsModel()));
         return binding.getRoot();
+    }
+
+    private void inject() {
+        MainActivityComponent component = MainActivityComponent.Injector.buildComponent(getMainActivity());
+        component.inject(getMainActivity());
+    }
+
+    private MainActivity getMainActivity() {
+        return (MainActivity) getActivity();
     }
 }
