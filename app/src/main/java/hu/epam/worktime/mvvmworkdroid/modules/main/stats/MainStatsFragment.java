@@ -31,7 +31,8 @@ public class MainStatsFragment extends Fragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mainStatsViewModel = ((MainActivity) getActivity()).getMainStatsViewModel();
+        inject();
+
     }
 
     @Nullable
@@ -43,7 +44,7 @@ public class MainStatsFragment extends Fragment {
     }
 
     private void inject() {
-        MainActivityComponent component = MainActivityComponent.Injector.buildComponent(getMainActivity());
+        MainActivityComponent component = MainActivityComponent.Injector.getComponent();
         component.inject(getMainActivity());
     }
 

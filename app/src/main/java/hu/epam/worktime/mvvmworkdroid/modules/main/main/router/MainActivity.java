@@ -49,11 +49,11 @@ public class MainActivity extends AppCompatActivity implements MainRouter {
         super.onCreate(savedInstanceState);
         inject();
         ActivityMainBinding viewDataBinding = DataBindingUtil.setContentView(this, R.layout.activity_main);
-        // viewDataBinding.setViewModel(mainViewModel);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
+        viewDataBinding.setViewModel(mainViewModel);
+        Toolbar toolbar = viewDataBinding.toolbar;
+        TabLayout tabLayout = viewDataBinding.tabs;
         setSupportActionBar(toolbar);
-        final ViewPager pager = (ViewPager) findViewById(R.id.viewpager);
+        final ViewPager pager = viewDataBinding.viewpager;
         statsFragment = new MainStatsFragment();
         listFragment = new MainListFragment();
 

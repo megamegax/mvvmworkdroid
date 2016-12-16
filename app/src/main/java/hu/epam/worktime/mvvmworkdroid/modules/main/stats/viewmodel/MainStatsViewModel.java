@@ -33,6 +33,7 @@ public class MainStatsViewModel extends BaseObservable implements ViewModel {
 
     @Override
     public void onStart() {
+ model.getAdat();        notifyPropertyChanged(BR.model);
 
     }
 

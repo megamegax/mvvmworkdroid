@@ -17,8 +17,9 @@ import hu.epam.worktime.mvvmworkdroid.modules.services.worker.CalculatorService;
  *
  * Created by Mihaly_Hunyady on 2016. 12. 01..
  */
-@PerActivity
+
 @Component(dependencies = ApplicationComponent.class, modules = {MainActivityModule.class, ActivityModule.class})
+@PerActivity
 public interface MainActivityComponent {
 
     void inject(MainActivity mainActivity);

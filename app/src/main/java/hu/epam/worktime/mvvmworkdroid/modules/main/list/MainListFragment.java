@@ -31,7 +31,7 @@ public class MainListFragment extends Fragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mainListViewModel = ((MainActivity) getActivity()).getMainListViewModel();
+        inject();
     }
 
     @Nullable
@@ -43,7 +43,7 @@ public class MainListFragment extends Fragment {
     }
 
     private void inject() {
-        MainActivityComponent component = MainActivityComponent.Injector.buildComponent(getMainActivity());
+        MainActivityComponent component = MainActivityComponent.Injector.getComponent();
         component.inject(getMainActivity());
     }
 

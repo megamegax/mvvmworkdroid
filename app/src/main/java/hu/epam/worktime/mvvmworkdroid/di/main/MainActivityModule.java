@@ -1,7 +1,10 @@
 package hu.epam.worktime.mvvmworkdroid.di.main;
 
+import javax.inject.Singleton;
+
 import dagger.Module;
 import dagger.Provides;
+import hu.epam.worktime.mvvmworkdroid.di.scopes.PerActivity;
 import hu.epam.worktime.mvvmworkdroid.modules.main.list.model.MainListModel;
 import hu.epam.worktime.mvvmworkdroid.modules.main.main.model.MainModel;
 import hu.epam.worktime.mvvmworkdroid.modules.main.main.router.MainActivity;
@@ -38,21 +41,25 @@ public class MainActivityModule {
     }
 
     @Provides
+    @PerActivity
     MainListModel providesMainListModel() {
         return new MainListModel();
     }
 
     @Provides
+    @PerActivity
     MainListViewModel providesMainListViewModel(MainListModel model, MainRouter mainRouter) {
         return new MainListViewModel(model, mainRouter);
     }
 
     @Provides
+    @PerActivity
     MainStatsModel providesMainStatsModel() {
         return new MainStatsModel();
     }
 
     @Provides
+    @PerActivity
     MainStatsViewModel providesMainStatsViewModel(MainStatsModel model) {
         return new MainStatsViewModel(model);
     }
