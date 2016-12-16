@@ -1,9 +1,9 @@
-package hu.epam.worktime.mvvmworkdroid.modules.main.viewmodel;
+package hu.epam.worktime.mvvmworkdroid.modules.main.main.viewmodel;
 
 import android.databinding.Bindable;
 import android.view.View;
 import hu.epam.worktime.mvvmworkdroid.common.widgets.recyclerview.ListItemViewModel;
-import hu.epam.worktime.mvvmworkdroid.modules.main.router.MainRouter;
+import hu.epam.worktime.mvvmworkdroid.modules.main.main.router.MainRouter;
 import hu.epam.worktime.mvvmworkdroid.modules.services.models.WorkTime;
 
 import org.threeten.bp.format.DateTimeFormatter;

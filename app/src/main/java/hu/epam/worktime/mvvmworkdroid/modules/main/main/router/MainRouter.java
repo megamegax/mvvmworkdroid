@@ -1,4 +1,4 @@
-package hu.epam.worktime.mvvmworkdroid.modules.main.router;
+package hu.epam.worktime.mvvmworkdroid.modules.main.main.router;
 
 import hu.epam.worktime.mvvmworkdroid.modules.services.models.WorkTime;
 

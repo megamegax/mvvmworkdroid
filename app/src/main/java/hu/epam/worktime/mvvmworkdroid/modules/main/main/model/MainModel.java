@@ -1,4 +1,4 @@
-package hu.epam.worktime.mvvmworkdroid.modules.main.model;
+package hu.epam.worktime.mvvmworkdroid.modules.main.main.model;
 
 import android.util.Log;
 import hu.epam.worktime.mvvmworkdroid.common.mvvm.Model;

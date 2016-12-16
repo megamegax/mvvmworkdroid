@@ -1,15 +1,14 @@
-package hu.epam.worktime.mvvmworkdroid.modules.main.viewmodel;
+package hu.epam.worktime.mvvmworkdroid.modules.main.main.viewmodel;
 
 import android.databinding.BaseObservable;
-import android.databinding.Bindable;
 import android.util.Log;
-import hu.epam.worktime.mvvmworkdroid.BR;
+
 import hu.epam.worktime.mvvmworkdroid.common.mvvm.ViewModel;
 import hu.epam.worktime.mvvmworkdroid.common.widgets.recyclerview.ListItemViewModel;
-import hu.epam.worktime.mvvmworkdroid.modules.main.model.MainListModel;
-import hu.epam.worktime.mvvmworkdroid.modules.main.model.MainModel;
-import hu.epam.worktime.mvvmworkdroid.modules.main.router.MainActivity;
-import hu.epam.worktime.mvvmworkdroid.modules.main.router.MainRouter;
+import hu.epam.worktime.mvvmworkdroid.modules.main.list.viewmodel.MainListViewModel;
+import hu.epam.worktime.mvvmworkdroid.modules.main.main.model.MainModel;
+import hu.epam.worktime.mvvmworkdroid.modules.main.main.router.MainActivity;
+import hu.epam.worktime.mvvmworkdroid.modules.main.main.router.MainRouter;
 import hu.epam.worktime.mvvmworkdroid.modules.services.models.WorkTime;
 import hu.epam.worktime.mvvmworkdroid.modules.services.models.WorkingStatistics;
 

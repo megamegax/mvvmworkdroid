@@ -1,4 +1,4 @@
-package hu.epam.worktime.mvvmworkdroid.modules.main.model;
+package hu.epam.worktime.mvvmworkdroid.modules.main.stats.model;
 
 import java.util.List;
 

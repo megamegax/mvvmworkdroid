@@ -6,13 +6,13 @@
 
         <variable
             name="viewModel"
-            type="hu.epam.worktime.mvvmworkdroid.modules.main.viewmodel.MainViewModel"/>
+            type="hu.epam.worktime.mvvmworkdroid.modules.main.main.viewmodel.MainViewModel"/>
     </data>
     <android.support.design.widget.CoordinatorLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:fitsSystemWindows="true"
-        tools:context=".modules.main.router.MainActivity">
+        tools:context=".modules.main.main.router.MainActivity">
 
         <android.support.design.widget.AppBarLayout
             android:layout_width="match_parent"

@@ -1,17 +1,15 @@
-package hu.epam.worktime.mvvmworkdroid.modules.save.view;
+package hu.epam.worktime.mvvmworkdroid.modules.save.router;
 
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.View;
+
 import hu.epam.worktime.mvvmworkdroid.R;
 import hu.epam.worktime.mvvmworkdroid.modules.services.WorkServiceApi;
 
 import javax.inject.Inject;
 
-public class SaveTimeActivity extends AppCompatActivity {
+public class SaveTimeActivity extends AppCompatActivity implements SaveRouter {
 
     @Inject
     WorkServiceApi workServiceApi;
@@ -25,4 +23,8 @@ public class SaveTimeActivity extends AppCompatActivity {
 
     }
 
+    @Override
+    public void goBack() {
+        this.finish();
+    }
 }

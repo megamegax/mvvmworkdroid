@@ -1,4 +1,4 @@
-package hu.epam.worktime.mvvmworkdroid.modules.main.router;
+package hu.epam.worktime.mvvmworkdroid.modules.main.main.router;
 
 import android.content.Intent;
 import android.databinding.DataBindingUtil;
@@ -17,11 +17,11 @@ import hu.epam.worktime.mvvmworkdroid.R;
 import hu.epam.worktime.mvvmworkdroid.databinding.ActivityMainBinding;
 import hu.epam.worktime.mvvmworkdroid.di.main.MainActivityComponent;
 import hu.epam.worktime.mvvmworkdroid.modules.details.view.DetailsActivity;
-import hu.epam.worktime.mvvmworkdroid.modules.main.pages.MainListFragment;
-import hu.epam.worktime.mvvmworkdroid.modules.main.pages.MainStatsFragment;
-import hu.epam.worktime.mvvmworkdroid.modules.main.viewmodel.MainListViewModel;
-import hu.epam.worktime.mvvmworkdroid.modules.main.viewmodel.MainViewModel;
-import hu.epam.worktime.mvvmworkdroid.modules.save.view.SaveTimeActivity;
+import hu.epam.worktime.mvvmworkdroid.modules.main.list.MainListFragment;
+import hu.epam.worktime.mvvmworkdroid.modules.main.stats.MainStatsFragment;
+import hu.epam.worktime.mvvmworkdroid.modules.main.list.viewmodel.MainListViewModel;
+import hu.epam.worktime.mvvmworkdroid.modules.main.main.viewmodel.MainViewModel;
+import hu.epam.worktime.mvvmworkdroid.modules.save.router.SaveTimeActivity;
 import hu.epam.worktime.mvvmworkdroid.modules.services.models.WorkTime;
 import hu.epam.worktime.mvvmworkdroid.modules.services.worker.CalculatorService;
 

@@ -1,4 +1,6 @@
-package hu.epam.worktime.mvvmworkdroid.modules.main.viewmodel;
+package hu.epam.worktime.mvvmworkdroid.modules.main.stats.viewmodel;
+
+import java.util.List;
 
 import android.databinding.BaseObservable;
 import android.databinding.Bindable;
@@ -6,13 +8,7 @@ import android.util.Log;
 import hu.epam.worktime.mvvmworkdroid.BR;
 import hu.epam.worktime.mvvmworkdroid.common.mvvm.ViewModel;
 import hu.epam.worktime.mvvmworkdroid.common.widgets.recyclerview.ListItemViewModel;
-import hu.epam.worktime.mvvmworkdroid.modules.main.model.MainListModel;
-import hu.epam.worktime.mvvmworkdroid.modules.main.router.MainRouter;
-import hu.epam.worktime.mvvmworkdroid.modules.services.models.WorkTime;
-import hu.epam.worktime.mvvmworkdroid.modules.services.models.WorkingStatistics;
-
-import java.util.ArrayList;
-import java.util.List;
+import hu.epam.worktime.mvvmworkdroid.modules.main.stats.model.MainStatsModel;
 
 /**
  *
@@ -20,19 +16,14 @@ import java.util.List;
  * Created by Mihaly_Hunyady on 2016. 12. 12..
  */
 
-public class MainListViewModel extends BaseObservable implements ViewModel {
+public class MainStatViewModel extends BaseObservable implements ViewModel {
     @Bindable
     private List<ListItemViewModel> workTimeItemViewModels;
-    private final MainListModel model;
-    private final MainRouter router;
+    private final MainStatsModel model;
     private final static String TAG = "MainListViewModel";
 
-    public MainListViewModel(MainListModel model, MainRouter mainRouter) {
+    public MainStatViewModel(MainStatsModel model) {
         this.model = model;
-        this.router = mainRouter;
-
-
-
     }
 
 

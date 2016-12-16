@@ -7,8 +7,8 @@ import hu.epam.worktime.mvvmworkdroid.di.ActivityModule;
 import hu.epam.worktime.mvvmworkdroid.di.ApplicationComponent;
 import hu.epam.worktime.mvvmworkdroid.di.qualifiers.ApplicationContext;
 import hu.epam.worktime.mvvmworkdroid.di.scopes.PerActivity;
-import hu.epam.worktime.mvvmworkdroid.modules.main.router.MainActivity;
-import hu.epam.worktime.mvvmworkdroid.modules.main.viewmodel.MainViewModel;
+import hu.epam.worktime.mvvmworkdroid.modules.main.main.router.MainActivity;
+import hu.epam.worktime.mvvmworkdroid.modules.main.main.viewmodel.MainViewModel;
 import hu.epam.worktime.mvvmworkdroid.modules.services.WorkServiceApi;
 import hu.epam.worktime.mvvmworkdroid.modules.services.worker.CalculatorService;
 
