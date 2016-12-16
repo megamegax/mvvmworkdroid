@@ -13,6 +13,49 @@ import hu.epam.worktime.mvvmworkdroid.modules.services.models.WorkingStatistics;
  */
 
 public class MainStatsModel implements Model {
+    private String dailyWorkTime;
+    private String montlyWorkTime;
+    private String daysToWork;
+    private String workTimeLeft;
+    private String avgWorkTime;
 
-    private WorkingStatistics workingStatistics;
+    public String getDailyWorkTime() {
+        return dailyWorkTime;
+    }
+
+    public void setDailyWorkTime(String dailyWorkTime) {
+        this.dailyWorkTime = dailyWorkTime;
+    }
+
+    public String getMontlyWorkTime() {
+        return montlyWorkTime;
+    }
+
+    public void setMontlyWorkTime(String montlyWorkTime) {
+        this.montlyWorkTime = montlyWorkTime;
+    }
+
+    public String getDaysToWork() {
+        return daysToWork;
+    }
+
+    public void setDaysToWork(String daysToWork) {
+        this.daysToWork = daysToWork;
+    }
+
+    public String getWorkTimeLeft() {
+        return workTimeLeft;
+    }
+
+    public void setWorkTimeLeft(String workTimeLeft) {
+        this.workTimeLeft = workTimeLeft;
+    }
+
+    public String getAvgWorkTime() {
+        return avgWorkTime;
+    }
+
+    public void setAvgWorkTime(String avgWorkTime) {
+        this.avgWorkTime = avgWorkTime;
+    }
 }

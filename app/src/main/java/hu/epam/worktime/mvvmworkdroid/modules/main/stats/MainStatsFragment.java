@@ -7,12 +7,16 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import javax.inject.Inject;
+
 import hu.epam.worktime.mvvmworkdroid.R;
 import hu.epam.worktime.mvvmworkdroid.databinding.ActivityMainStatsBinding;
 import hu.epam.worktime.mvvmworkdroid.di.main.MainActivityComponent;
+import hu.epam.worktime.mvvmworkdroid.modules.main.list.viewmodel.MainListViewModel;
 import hu.epam.worktime.mvvmworkdroid.modules.main.stats.model.MainStatsModel;
 import hu.epam.worktime.mvvmworkdroid.modules.main.main.router.MainActivity;
-import hu.epam.worktime.mvvmworkdroid.modules.main.stats.viewmodel.MainStatViewModel;
+import hu.epam.worktime.mvvmworkdroid.modules.main.stats.viewmodel.MainStatsViewModel;
 
 /**
  *
@@ -21,18 +25,20 @@ import hu.epam.worktime.mvvmworkdroid.modules.main.stats.viewmodel.MainStatViewM
  */
 
 public class MainStatsFragment extends Fragment {
+    @Inject
+    MainStatsViewModel mainStatsViewModel;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        mainStatsViewModel = ((MainActivity) getActivity()).getMainStatsViewModel();
     }
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         ActivityMainStatsBinding binding = DataBindingUtil.inflate(inflater, R.layout.activity_main_stats, container, false);
-        binding.setViewModel(new MainStatViewModel(new MainStatsModel()));
+        binding.setViewModel(mainStatsViewModel);
         return binding.getRoot();
     }
 

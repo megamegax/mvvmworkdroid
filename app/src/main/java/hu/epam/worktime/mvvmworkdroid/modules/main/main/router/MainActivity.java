@@ -21,6 +21,7 @@ import hu.epam.worktime.mvvmworkdroid.modules.main.list.MainListFragment;
 import hu.epam.worktime.mvvmworkdroid.modules.main.stats.MainStatsFragment;
 import hu.epam.worktime.mvvmworkdroid.modules.main.list.viewmodel.MainListViewModel;
 import hu.epam.worktime.mvvmworkdroid.modules.main.main.viewmodel.MainViewModel;
+import hu.epam.worktime.mvvmworkdroid.modules.main.stats.viewmodel.MainStatsViewModel;
 import hu.epam.worktime.mvvmworkdroid.modules.save.router.SaveTimeActivity;
 import hu.epam.worktime.mvvmworkdroid.modules.services.models.WorkTime;
 import hu.epam.worktime.mvvmworkdroid.modules.services.worker.CalculatorService;
@@ -33,6 +34,8 @@ public class MainActivity extends AppCompatActivity implements MainRouter {
     MainViewModel mainViewModel;
     @Inject
     MainListViewModel mainListViewModel;
+    @Inject
+    MainStatsViewModel mainStatsViewModel;
 
     @Inject
     CalculatorService calculatorService;
@@ -110,6 +113,7 @@ public class MainActivity extends AppCompatActivity implements MainRouter {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
+            mainViewModel.refresh();
             return true;
         }
 
@@ -134,5 +138,9 @@ public class MainActivity extends AppCompatActivity implements MainRouter {
 
     public MainListViewModel getMainListViewModel() {
         return mainListViewModel;
+    }
+
+    public MainStatsViewModel getMainStatsViewModel() {
+        return mainStatsViewModel;
     }
 }

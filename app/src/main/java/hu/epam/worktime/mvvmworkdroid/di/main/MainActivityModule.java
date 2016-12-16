@@ -8,6 +8,8 @@ import hu.epam.worktime.mvvmworkdroid.modules.main.main.router.MainActivity;
 import hu.epam.worktime.mvvmworkdroid.modules.main.main.router.MainRouter;
 import hu.epam.worktime.mvvmworkdroid.modules.main.list.viewmodel.MainListViewModel;
 import hu.epam.worktime.mvvmworkdroid.modules.main.main.viewmodel.MainViewModel;
+import hu.epam.worktime.mvvmworkdroid.modules.main.stats.model.MainStatsModel;
+import hu.epam.worktime.mvvmworkdroid.modules.main.stats.viewmodel.MainStatsViewModel;
 import hu.epam.worktime.mvvmworkdroid.modules.services.WorkServiceApi;
 import hu.epam.worktime.mvvmworkdroid.modules.services.worker.CalculatorService;
 
@@ -34,6 +36,7 @@ public class MainActivityModule {
     MainViewModel providesMainViewModel(MainModel model, MainRouter mainRouter) {
         return new MainViewModel(model, mainRouter);
     }
+
     @Provides
     MainListModel providesMainListModel() {
         return new MainListModel();
@@ -42,6 +45,16 @@ public class MainActivityModule {
     @Provides
     MainListViewModel providesMainListViewModel(MainListModel model, MainRouter mainRouter) {
         return new MainListViewModel(model, mainRouter);
+    }
+
+    @Provides
+    MainStatsModel providesMainStatsModel() {
+        return new MainStatsModel();
+    }
+
+    @Provides
+    MainStatsViewModel providesMainStatsViewModel(MainStatsModel model) {
+        return new MainStatsViewModel(model);
     }
 
     @Provides

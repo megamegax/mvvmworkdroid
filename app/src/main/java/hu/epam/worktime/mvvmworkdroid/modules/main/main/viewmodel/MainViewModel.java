@@ -9,6 +9,7 @@ import hu.epam.worktime.mvvmworkdroid.modules.main.list.viewmodel.MainListViewMo
 import hu.epam.worktime.mvvmworkdroid.modules.main.main.model.MainModel;
 import hu.epam.worktime.mvvmworkdroid.modules.main.main.router.MainActivity;
 import hu.epam.worktime.mvvmworkdroid.modules.main.main.router.MainRouter;
+import hu.epam.worktime.mvvmworkdroid.modules.main.stats.viewmodel.MainStatsViewModel;
 import hu.epam.worktime.mvvmworkdroid.modules.services.models.WorkTime;
 import hu.epam.worktime.mvvmworkdroid.modules.services.models.WorkingStatistics;
 
@@ -39,10 +40,10 @@ public class MainViewModel extends BaseObservable implements ViewModel, MainMode
     private void init(MainModel model) {
         Log.d(TAG, "elindult");
         model.setCallback(this);
-        loadWorkTimes(model);
+        refresh();
     }
 
-    private void loadWorkTimes(MainModel model) {
+    public void refresh() {
         model.loadWorkTimes();
         setLoading(true);
     }
@@ -62,8 +63,9 @@ public class MainViewModel extends BaseObservable implements ViewModel, MainMode
         this.workTimes = workTimes;
         Collections.sort(this.workTimes.getWorkTimes());
         MainListViewModel mainListView = ((MainActivity) router).getMainListViewModel();
-
+        MainStatsViewModel mainStatsViewModel = ((MainActivity) router).getMainStatsViewModel();
         mainListView.setWorkTimeItemViewModels(transformToItemViewModels(this.workTimes.getWorkTimes()));
+        mainStatsViewModel.setWorkingStatistics(workTimes);
 
     }
 

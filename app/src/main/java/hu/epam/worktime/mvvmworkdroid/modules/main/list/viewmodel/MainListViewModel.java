@@ -27,12 +27,7 @@ public class MainListViewModel extends BaseObservable implements ViewModel {
     public MainListViewModel(MainListModel model, MainRouter mainRouter) {
         this.model = model;
         this.router = mainRouter;
-
-
-
     }
-
-
 
     @Override
     public void onStop() {
