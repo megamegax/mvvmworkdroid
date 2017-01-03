@@ -6,10 +6,10 @@ import hu.epam.worktime.mvvmworkdroid.di.scopes.PerActivity;
 import hu.epam.worktime.mvvmworkdroid.modules.dal.WorkItemDao;
 import hu.epam.worktime.mvvmworkdroid.modules.dal.WorkItemDaoImpl;
 import hu.epam.worktime.mvvmworkdroid.modules.main.list.model.MainListModel;
+import hu.epam.worktime.mvvmworkdroid.modules.main.list.viewmodel.MainListViewModel;
 import hu.epam.worktime.mvvmworkdroid.modules.main.main.model.MainModel;
 import hu.epam.worktime.mvvmworkdroid.modules.main.main.router.MainActivity;
 import hu.epam.worktime.mvvmworkdroid.modules.main.main.router.MainRouter;
-import hu.epam.worktime.mvvmworkdroid.modules.main.list.viewmodel.MainListViewModel;
 import hu.epam.worktime.mvvmworkdroid.modules.main.main.viewmodel.MainViewModel;
 import hu.epam.worktime.mvvmworkdroid.modules.main.stats.model.MainStatsModel;
 import hu.epam.worktime.mvvmworkdroid.modules.main.stats.viewmodel.MainStatsViewModel;
@@ -30,7 +30,7 @@ public class MainActivityModule {
 
     @Provides
     MainModel providesMainModel(WorkServiceApi workServiceApi, CalculatorService calculatorService, WorkItemDao dao) {
-        return new MainModel(workServiceApi, calculatorService,dao);
+        return new MainModel(workServiceApi, calculatorService, dao);
     }
 
     @Provides
@@ -48,8 +48,8 @@ public class MainActivityModule {
 
     @Provides
     @PerActivity
-    MainListModel providesMainListModel() {
-        return new MainListModel();
+    MainListModel providesMainListModel(WorkItemDao dao) {
+        return new MainListModel(dao);
     }
 
     @Provides
@@ -60,8 +60,8 @@ public class MainActivityModule {
 
     @Provides
     @PerActivity
-    MainStatsModel providesMainStatsModel() {
-        return new MainStatsModel();
+    MainStatsModel providesMainStatsModel(WorkItemDao dao) {
+        return new MainStatsModel(dao);
     }
 
     @Provides

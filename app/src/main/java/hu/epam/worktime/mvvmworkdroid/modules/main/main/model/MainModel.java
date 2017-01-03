@@ -2,7 +2,8 @@ package hu.epam.worktime.mvvmworkdroid.modules.main.main.model;
 
 import android.util.Log;
 
-import hu.epam.worktime.mvvmworkdroid.common.mvvm.Model;
+import java.util.List;
+
 import hu.epam.worktime.mvvmworkdroid.modules.dal.WorkItemDao;
 import hu.epam.worktime.mvvmworkdroid.modules.services.WorkServiceApi;
 import hu.epam.worktime.mvvmworkdroid.modules.services.models.WorkDay;
@@ -13,17 +14,15 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-import java.util.List;
-
 /**
  * Created by Mihaly_Hunyady on 2016. 12. 12..
  */
 
-public class MainModel implements Model {
+public class MainModel {
     private final CalculatorService calculatorService;
     private final WorkItemDao workItemDao;
-    private MainModel.ModelCallback callback;
     private final WorkServiceApi workServiceApi;
+    private MainModel.ModelCallback callback;
     private WorkingStatistics workingStatistics;
     private List<WorkTime> workTimes;
 

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <array name="viewPagerLayouts">
-        <item>@layout/activity_main_list</item>
         <item>@layout/activity_main_stats</item>
+        <item>@layout/activity_main_list</item>
     </array>
 </resources>

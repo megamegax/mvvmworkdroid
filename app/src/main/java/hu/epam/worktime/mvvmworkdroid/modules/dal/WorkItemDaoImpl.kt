@@ -63,16 +63,18 @@ class WorkItemDaoImpl : WorkItemDao {
 
     private fun convertWorkTimesToWorkTimeEntities(workTimes: List<WorkTime>): RealmList<WorkTimeEntity> {
         val realmList = RealmList<WorkTimeEntity>()
+        val realm = Realm.getDefaultInstance()
+
         workTimes.forEach {
-            realmList.add(WorkTimeEntity(
+            val entity = realm.copyToRealm(WorkTimeEntity(
                     arrive = it.arrive.format(DateTimeFormatter.ISO_TIME),
                     date = it.date.format(DateTimeFormatter.ISO_DATE),
                     dinner = convertPairToPairEntity(it.dinner),
                     leave = it.leave.format(DateTimeFormatter.ISO_TIME),
                     nettoWork = it.nettoWork.format(DateTimeFormatter.ISO_TIME),
-                    offtime = convertPairListToPairEntityList(it.offtime)
+                    offtime = convertPairListToPairEntityList(it.offtime)))
+            realmList.add(entity)
 
-            ))
         }
         return realmList
     }

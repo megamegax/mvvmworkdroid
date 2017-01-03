@@ -58,7 +58,7 @@
                         android:layout_marginEnd="16dp"
                         android:layout_marginRight="16dp"
                         android:layout_marginTop="24dp"
-                        android:text="@{viewModel.model.dailyWorkTime}"
+                        android:text="@{viewModel.dailyWorkTime}"
                         app:layout_constraintRight_toRightOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
                         tools:layout_constraintRight_creator="1"
@@ -85,7 +85,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="16dp"
-                        android:text="@{viewModel.model.montlyWorkTime}"
+                        android:text="@{viewModel.montlyWorkTime}"
                         app:layout_constraintLeft_toLeftOf="@+id/dailyWorkTime"
                         app:layout_constraintTop_toBottomOf="@+id/dailyWorkTime"
                         tools:text="00:00:00" />
@@ -109,7 +109,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="16dp"
-                        android:text="@{viewModel.model.daysToWork}"
+                        android:text="@{viewModel.daysToWork}"
                         app:layout_constraintLeft_toLeftOf="@+id/dailyWorkTime"
                         app:layout_constraintTop_toBottomOf="@+id/monthlyWorkTime"
                         tools:text="20" />
@@ -134,7 +134,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="16dp"
-                        android:text="@{viewModel.model.workTimeLeft}"
+                        android:text="@{viewModel.workTimeLeft}"
                         app:layout_constraintLeft_toLeftOf="@+id/dailyWorkTime"
                         app:layout_constraintTop_toBottomOf="@+id/requiredDays"
                         tools:text="160:00:00" />
@@ -159,7 +159,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="16dp"
-                        android:text="@{viewModel.model.avgWorkTime}"
+                        android:text="@{viewModel.avgWorkTime}"
                         app:layout_constraintLeft_toLeftOf="@+id/dailyWorkTime"
                         app:layout_constraintTop_toBottomOf="@+id/workTimeLeft"
                         tools:text="00:00:00" />

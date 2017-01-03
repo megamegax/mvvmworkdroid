@@ -4,13 +4,15 @@ import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
-
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+
+import javax.inject.Inject;
+
 import hu.epam.worktime.mvvmworkdroid.R;
 import hu.epam.worktime.mvvmworkdroid.databinding.ActivityMainBinding;
 import hu.epam.worktime.mvvmworkdroid.di.main.MainActivityComponent;
@@ -19,8 +21,6 @@ import hu.epam.worktime.mvvmworkdroid.modules.main.main.viewmodel.MainViewModel;
 import hu.epam.worktime.mvvmworkdroid.modules.save.router.SaveTimeActivity;
 import hu.epam.worktime.mvvmworkdroid.modules.services.models.WorkTime;
 import hu.epam.worktime.mvvmworkdroid.modules.services.worker.CalculatorService;
-
-import javax.inject.Inject;
 
 public class MainActivity extends AppCompatActivity implements MainRouter {
 
@@ -106,4 +106,15 @@ public class MainActivity extends AppCompatActivity implements MainRouter {
         openNewEntry();
     }
 
+    @Override
+    protected void onStart() {
+        super.onStart();
+        mainViewModel.onStart();
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        mainViewModel.onStop();
+    }
 }
