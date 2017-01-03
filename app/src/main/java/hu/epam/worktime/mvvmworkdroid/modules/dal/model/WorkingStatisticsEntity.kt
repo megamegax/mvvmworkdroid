@@ -1,19 +1,9 @@
 package hu.epam.worktime.mvvmworkdroid.modules.dal.model
 
-import hu.epam.worktime.mvvmworkdroid.modules.dal.AutoIncrementable
-import io.realm.Realm
 import io.realm.RealmList
 import io.realm.RealmObject
-import org.threeten.bp.LocalTime
 
-open class WorkingStatisticsEntity() : RealmObject(), AutoIncrementable {
-    override fun setPrimaryKey(primaryKey: Int) {
-        this.id = primaryKey
-    }
-
-    override fun getNextPrimaryKey(realm: Realm): Int? {
-        return realm.where(WorkingStatisticsEntity::class.java).max("id").toInt() + 1
-    }
+open class WorkingStatisticsEntity() : RealmObject() {
 
     var id: Int = 0
     lateinit var dailyWorkTime: String

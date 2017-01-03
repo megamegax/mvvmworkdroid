@@ -1,7 +1,9 @@
 package hu.epam.worktime.mvvmworkdroid.modules.main.main.model;
 
 import android.util.Log;
+
 import hu.epam.worktime.mvvmworkdroid.common.mvvm.Model;
+import hu.epam.worktime.mvvmworkdroid.modules.dal.WorkItemDao;
 import hu.epam.worktime.mvvmworkdroid.modules.services.WorkServiceApi;
 import hu.epam.worktime.mvvmworkdroid.modules.services.models.WorkDay;
 import hu.epam.worktime.mvvmworkdroid.modules.services.models.WorkTime;
@@ -14,20 +16,20 @@ import retrofit2.Response;
 import java.util.List;
 
 /**
- *
- *
  * Created by Mihaly_Hunyady on 2016. 12. 12..
  */
 
 public class MainModel implements Model {
     private final CalculatorService calculatorService;
+    private final WorkItemDao workItemDao;
     private MainModel.ModelCallback callback;
     private final WorkServiceApi workServiceApi;
     private WorkingStatistics workingStatistics;
     private List<WorkTime> workTimes;
 
 
-    public MainModel(WorkServiceApi workServiceApi, CalculatorService calculatorService) {
+    public MainModel(WorkServiceApi workServiceApi, CalculatorService calculatorService, WorkItemDao workItemDao) {
+        this.workItemDao = workItemDao;
         this.workServiceApi = workServiceApi;
         this.calculatorService = calculatorService;
     }
@@ -63,7 +65,7 @@ public class MainModel implements Model {
     private void onWorkDayResult(Response<List<WorkDay>> workDays) {
         calculatorService.setWorkDays(workDays.body());
         this.workingStatistics = calculatorService.calculateStuffs(workTimes);
-
+        workItemDao.saveWorkingStatistics(workingStatistics);
         onCompleted();
     }
 

@@ -8,4 +8,4 @@ data class WorkingStatistics(val dailyWorkTime: LocalTime,
                              val workTimeLeft: String,
                              val avgWorkTime: LocalTime,
                              val workTimes: List<WorkTime>,
-                             var id: Int?)
+                             var id: Int = 0)

@@ -29,8 +29,8 @@ public class MainActivityModule {
     }
 
     @Provides
-    MainModel providesMainModel(WorkServiceApi workServiceApi, CalculatorService calculatorService) {
-        return new MainModel(workServiceApi, calculatorService);
+    MainModel providesMainModel(WorkServiceApi workServiceApi, CalculatorService calculatorService, WorkItemDao dao) {
+        return new MainModel(workServiceApi, calculatorService,dao);
     }
 
     @Provides
