@@ -36,8 +36,8 @@ public class MainActivityModule {
     @Provides
     MainViewModel providesMainViewModel(MainModel model, MainRouter mainRouter, MainListViewModel mainListViewModel, MainStatsViewModel mainStatsViewModel) {
         MainViewModel mainViewModel = new MainViewModel(model, mainRouter);
-        mainViewModel.addView(mainListViewModel);
         mainViewModel.addView(mainStatsViewModel);
+        mainViewModel.addView(mainListViewModel);
         return mainViewModel;
     }
 

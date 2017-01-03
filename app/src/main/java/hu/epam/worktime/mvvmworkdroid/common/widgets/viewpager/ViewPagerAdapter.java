@@ -12,7 +12,8 @@ import android.view.ViewGroup;
 import java.util.Collections;
 import java.util.List;
 
-import hu.epam.worktime.mvvmworkdroid.common.widgets.recyclerview.ListItemViewModel;
+import hu.epam.worktime.mvvmworkdroid.BR;
+
 
 /**
  * Created by hunyadym on 2017. 01. 03..
@@ -36,7 +37,8 @@ public class ViewPagerAdapter extends PagerAdapter {
      */
     public View getView(int position, ViewPager pager) {
         ViewDataBinding dataBinding = DataBindingUtil.inflate(LayoutInflater.from(pager.getContext()), itemLayouts.get(position), pager, false);
-
+        dataBinding.setVariable(BR.viewModel, items.get(position));
+        dataBinding.executePendingBindings();
         return dataBinding.getRoot();
     }
 
