@@ -4,9 +4,7 @@ import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentPagerAdapter;
-import android.support.v4.view.PagerAdapter;
+
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -17,11 +15,7 @@ import hu.epam.worktime.mvvmworkdroid.R;
 import hu.epam.worktime.mvvmworkdroid.databinding.ActivityMainBinding;
 import hu.epam.worktime.mvvmworkdroid.di.main.MainActivityComponent;
 import hu.epam.worktime.mvvmworkdroid.modules.details.view.DetailsActivity;
-import hu.epam.worktime.mvvmworkdroid.modules.main.list.MainListFragment;
-import hu.epam.worktime.mvvmworkdroid.modules.main.stats.MainStatsFragment;
-import hu.epam.worktime.mvvmworkdroid.modules.main.list.viewmodel.MainListViewModel;
 import hu.epam.worktime.mvvmworkdroid.modules.main.main.viewmodel.MainViewModel;
-import hu.epam.worktime.mvvmworkdroid.modules.main.stats.viewmodel.MainStatsViewModel;
 import hu.epam.worktime.mvvmworkdroid.modules.save.router.SaveTimeActivity;
 import hu.epam.worktime.mvvmworkdroid.modules.services.models.WorkTime;
 import hu.epam.worktime.mvvmworkdroid.modules.services.worker.CalculatorService;
@@ -32,17 +26,9 @@ public class MainActivity extends AppCompatActivity implements MainRouter {
 
     @Inject
     MainViewModel mainViewModel;
-    @Inject
-    MainListViewModel mainListViewModel;
-    @Inject
-    MainStatsViewModel mainStatsViewModel;
 
     @Inject
     CalculatorService calculatorService;
-
-    MainStatsFragment statsFragment;
-
-    MainListFragment listFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,8 +40,6 @@ public class MainActivity extends AppCompatActivity implements MainRouter {
         TabLayout tabLayout = viewDataBinding.tabs;
         setSupportActionBar(toolbar);
         final ViewPager pager = viewDataBinding.viewpager;
-        statsFragment = new MainStatsFragment();
-        listFragment = new MainListFragment();
 
         tabLayout.addTab(tabLayout.newTab().setText(getString(R.string.tab_stats)));
         tabLayout.addTab(tabLayout.newTab().setText(getString(R.string.tab_list)));
@@ -75,21 +59,7 @@ public class MainActivity extends AppCompatActivity implements MainRouter {
 
             }
         });
-        PagerAdapter adapter = new FragmentPagerAdapter(getSupportFragmentManager()) {
-            @Override
-            public Fragment getItem(int position) {
-                if (position == 0) {
-                    return statsFragment;
-                } else
-                    return listFragment;
-            }
 
-            @Override
-            public int getCount() {
-                return 2;
-            }
-        };
-        pager.setAdapter(adapter);
     }
 
     private void inject() {
@@ -136,11 +106,4 @@ public class MainActivity extends AppCompatActivity implements MainRouter {
         openNewEntry();
     }
 
-    public MainListViewModel getMainListViewModel() {
-        return mainListViewModel;
-    }
-
-    public MainStatsViewModel getMainStatsViewModel() {
-        return mainStatsViewModel;
-    }
 }

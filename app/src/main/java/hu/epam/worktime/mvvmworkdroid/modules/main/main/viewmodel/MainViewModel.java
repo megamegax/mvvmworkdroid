@@ -1,10 +1,12 @@
 package hu.epam.worktime.mvvmworkdroid.modules.main.main.viewmodel;
 
 import android.databinding.BaseObservable;
+import android.databinding.Bindable;
 import android.util.Log;
 
 import hu.epam.worktime.mvvmworkdroid.common.mvvm.ViewModel;
 import hu.epam.worktime.mvvmworkdroid.common.widgets.recyclerview.ListItemViewModel;
+import hu.epam.worktime.mvvmworkdroid.common.widgets.viewpager.ViewItemViewModel;
 import hu.epam.worktime.mvvmworkdroid.modules.main.list.viewmodel.MainListViewModel;
 import hu.epam.worktime.mvvmworkdroid.modules.main.main.model.MainModel;
 import hu.epam.worktime.mvvmworkdroid.modules.main.main.router.MainActivity;
@@ -18,8 +20,6 @@ import java.util.Collections;
 import java.util.List;
 
 /**
- *
- *
  * Created by Mihaly_Hunyady on 2016. 12. 02..
  */
 
@@ -28,6 +28,8 @@ public class MainViewModel extends BaseObservable implements ViewModel, MainMode
     private final MainModel model;
     private WorkingStatistics workTimes;
     private boolean loading;
+    @Bindable
+    private final List<ViewItemViewModel> views = new ArrayList<>();
 
     private final static String TAG = "MainViewModel";
 
@@ -35,6 +37,10 @@ public class MainViewModel extends BaseObservable implements ViewModel, MainMode
         this.model = model;
         this.router = router;
         init(model);
+    }
+
+    public void addView(ViewItemViewModel viewModel) {
+        views.add(viewModel);
     }
 
     private void init(MainModel model) {
@@ -62,11 +68,6 @@ public class MainViewModel extends BaseObservable implements ViewModel, MainMode
     public void onWorkTimeLoaded(WorkingStatistics workTimes) {
         this.workTimes = workTimes;
         Collections.sort(this.workTimes.getWorkTimes());
-        MainListViewModel mainListView = ((MainActivity) router).getMainListViewModel();
-        MainStatsViewModel mainStatsViewModel = ((MainActivity) router).getMainStatsViewModel();
-        mainListView.setWorkTimeItemViewModels(transformToItemViewModels(this.workTimes.getWorkTimes()));
-        mainStatsViewModel.setWorkingStatistics(workTimes);
-
     }
 
     private List<ListItemViewModel> transformToItemViewModels(List<WorkTime> workTimes) {
@@ -98,4 +99,7 @@ public class MainViewModel extends BaseObservable implements ViewModel, MainMode
         return loading;
     }
 
+    public List<ViewItemViewModel> getViews() {
+        return views;
+    }
 }

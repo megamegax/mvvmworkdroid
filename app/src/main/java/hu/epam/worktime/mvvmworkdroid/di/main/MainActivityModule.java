@@ -1,10 +1,10 @@
 package hu.epam.worktime.mvvmworkdroid.di.main;
 
-import javax.inject.Singleton;
-
 import dagger.Module;
 import dagger.Provides;
 import hu.epam.worktime.mvvmworkdroid.di.scopes.PerActivity;
+import hu.epam.worktime.mvvmworkdroid.modules.dal.WorkItemDao;
+import hu.epam.worktime.mvvmworkdroid.modules.dal.WorkItemDaoImpl;
 import hu.epam.worktime.mvvmworkdroid.modules.main.list.model.MainListModel;
 import hu.epam.worktime.mvvmworkdroid.modules.main.main.model.MainModel;
 import hu.epam.worktime.mvvmworkdroid.modules.main.main.router.MainActivity;
@@ -17,8 +17,6 @@ import hu.epam.worktime.mvvmworkdroid.modules.services.WorkServiceApi;
 import hu.epam.worktime.mvvmworkdroid.modules.services.worker.CalculatorService;
 
 /**
- *
- *
  * Created by Mihaly_Hunyady on 2016. 12. 01..
  */
 @Module
@@ -36,8 +34,16 @@ public class MainActivityModule {
     }
 
     @Provides
-    MainViewModel providesMainViewModel(MainModel model, MainRouter mainRouter) {
-        return new MainViewModel(model, mainRouter);
+    MainViewModel providesMainViewModel(MainModel model, MainRouter mainRouter, MainListViewModel mainListViewModel, MainStatsViewModel mainStatsViewModel) {
+        MainViewModel mainViewModel = new MainViewModel(model, mainRouter);
+        mainViewModel.addView(mainListViewModel);
+        mainViewModel.addView(mainStatsViewModel);
+        return mainViewModel;
+    }
+
+    @Provides
+    WorkItemDao providesDao() {
+        return new WorkItemDaoImpl();
     }
 
     @Provides

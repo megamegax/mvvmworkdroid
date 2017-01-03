@@ -25,7 +25,7 @@ class CalculatorService(var workDays: List<WorkDay> = emptyList()) {
         val daysToWork: Int = calculateDaysToWork()
         val workTimeLeft: String = calculateWorkTimeLeft(daysToWork)
         val avgWorkTime: LocalTime = calculateAverageWorktime(workTimes)
-        return WorkingStatistics(dailyWorkTime, monthlyWorkTime, daysToWork, workTimeLeft, avgWorkTime, workTimes)
+        return WorkingStatistics(dailyWorkTime, monthlyWorkTime, daysToWork, workTimeLeft, avgWorkTime, workTimes,0)
     }
 
     private fun calculateWorkTimeLeft(daysToWork: Int): String {

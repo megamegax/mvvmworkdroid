@@ -1,22 +1,20 @@
 package hu.epam.worktime.mvvmworkdroid.modules.main.stats.viewmodel;
 
-import android.databinding.BaseObservable;
 import android.databinding.Bindable;
 
 import org.threeten.bp.format.DateTimeFormatter;
 
 import hu.epam.worktime.mvvmworkdroid.BR;
 import hu.epam.worktime.mvvmworkdroid.common.mvvm.ViewModel;
+import hu.epam.worktime.mvvmworkdroid.common.widgets.viewpager.ViewItemViewModel;
 import hu.epam.worktime.mvvmworkdroid.modules.main.stats.model.MainStatsModel;
 import hu.epam.worktime.mvvmworkdroid.modules.services.models.WorkingStatistics;
 
 /**
- *
- *
  * Created by Mihaly_Hunyady on 2016. 12. 12..
  */
 
-public class MainStatsViewModel extends BaseObservable implements ViewModel {
+public class MainStatsViewModel extends ViewItemViewModel implements ViewModel {
     private WorkingStatistics workingStatistics;
     @Bindable
     private final MainStatsModel model;
@@ -33,7 +31,8 @@ public class MainStatsViewModel extends BaseObservable implements ViewModel {
 
     @Override
     public void onStart() {
- model.getAdat();        notifyPropertyChanged(BR.model);
+        //model.getAdat();
+        notifyPropertyChanged(BR.model);
 
     }
 

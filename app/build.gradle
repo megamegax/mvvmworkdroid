@@ -1,13 +1,13 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
-
+apply plugin: 'realm-android'
 apply from: 'https://gist.githubusercontent.com/stefanhoth/37f86c8e41d648cbd2c8/raw/49ca13d028885cae89f7da949f11069365aefeec/idea-gradle-sources.gradle'
 apply plugin: "com.github.ben-manes.versions"
 
 android {
     compileSdkVersion 25
-    buildToolsVersion "25.0.0"
+    buildToolsVersion "25.0.2"
     defaultConfig {
         applicationId "hu.epam.worktime.mvvmworkdroid"
         minSdkVersion 17
@@ -25,20 +25,30 @@ android {
     dataBinding {
         enabled = true
     }
+    sourceSets {
+        main.java.srcDirs += 'src/main/kotlin'
+        main.java.srcDirs += [file("$buildDir/generated/source/kapt/main")]
+
+    }
 }
 
 ext {
-    supportLibVersion = '25.0.1'
-    daggerVersion = "2.6"
+    supportLibVersion = '25.1.0'
+    daggerVersion = "2.8"
     retrofitVersion = "2.1.0"
-    kotlinVersion = "1.0.5-2"
+    kotlinVersion = "1.0.6"
 }
-
+kapt {
+    generateStubs = true
+}
 dependencies {
     compile "com.google.dagger:dagger:${daggerVersion}"
-    annotationProcessor "com.google.dagger:dagger-compiler:2.6"
+    annotationProcessor "com.google.dagger:dagger-compiler:2.8"
     debugAnnotationProcessor 'com.google.dagger:dagger-compiler:2.2'
-
+    kapt 'com.google.dagger:dagger-compiler:2.8'
+    kapt 'com.android.databinding:compiler:2.2.3'
+    provided 'org.glassfish:javax.annotation:10.0-b28'
+    provided 'javax.annotation:jsr250-api:1.0'
     compile fileTree(dir: 'libs', include: ['*.jar'])
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
@@ -65,12 +75,12 @@ dependencies {
     compile 'com.jakewharton.threetenabp:threetenabp:1.0.4'
     compile "com.squareup.retrofit2:retrofit:${retrofitVersion}"
     compile "com.squareup.retrofit2:converter-gson:${retrofitVersion}"
-
     compile 'com.chibatching:kotpref:1.5.0'
+
 }
 
 buildscript {
-    ext.kotlinVersion = "1.0.5-2"
+    ext.kotlinVersion = "1.0.6"
     repositories {
         jcenter()
         maven { url "https://jitpack.io" }
