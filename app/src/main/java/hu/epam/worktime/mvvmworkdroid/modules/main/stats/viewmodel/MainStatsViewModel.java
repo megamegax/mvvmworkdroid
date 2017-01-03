@@ -37,7 +37,11 @@ public class MainStatsViewModel extends ViewItemViewModel {
         setDaysToWork(String.valueOf(workingStatistics.getDaysToWork()));
         setMontlyWorkTime(workingStatistics.getMontlyWorkTime().format(DateTimeFormatter.ISO_LOCAL_TIME));
         setWorkTimeLeft(workingStatistics.getWorkTimeLeft());
-        notifyPropertyChanged(BR.viewModel);
+        notifyPropertyChanged(BR.avgWorkTime);
+        notifyPropertyChanged(BR.dailyWorkTime);
+        notifyPropertyChanged(BR.daysToWork);
+        notifyPropertyChanged(BR.workTimeLeft);
+        notifyPropertyChanged(BR.montlyWorkTime);
     }
 
     public MainStatsModel getModel() {
