@@ -16,7 +16,7 @@ import javax.inject.Inject;
 import hu.epam.worktime.mvvmworkdroid.R;
 import hu.epam.worktime.mvvmworkdroid.databinding.ActivityMainBinding;
 import hu.epam.worktime.mvvmworkdroid.di.main.MainActivityComponent;
-import hu.epam.worktime.mvvmworkdroid.modules.details.view.DetailsActivity;
+import hu.epam.worktime.mvvmworkdroid.modules.details.router.DetailsActivity;
 import hu.epam.worktime.mvvmworkdroid.modules.main.main.viewmodel.MainViewModel;
 import hu.epam.worktime.mvvmworkdroid.modules.save.router.SaveActivity;
 import hu.epam.worktime.mvvmworkdroid.modules.services.models.WorkTime;
@@ -99,7 +99,7 @@ public class MainActivity extends AppCompatActivity implements MainRouter {
     @Override
     public void openNewEntry() {
         Intent intent = new Intent(MainActivity.this, SaveActivity.class);
-        startActivity(intent);
+        startActivityForResult(intent, 0);
     }
 
     public void addFabClicked(View view) {
@@ -116,5 +116,11 @@ public class MainActivity extends AppCompatActivity implements MainRouter {
     protected void onStop() {
         super.onStop();
         mainViewModel.onStop();
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        mainViewModel.refresh();
     }
 }

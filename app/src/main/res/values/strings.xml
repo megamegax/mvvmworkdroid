@@ -11,5 +11,14 @@
     <string name="other_arrive">Egyéb vissza</string>
     <string name="tab_stats">Statisztikák</string>
     <string name="tab_list">Munkaidők</string>
+    <string name="dateTime">%1$s %2$s</string>
+    <string-array name="events">
+        <item>@string/arrive</item>
+        <item>@string/leave</item>
+        <item>@string/dinner_begin</item>
+        <item>@string/dinner_end</item>
+        <item>@string/other_leave</item>
+        <item>@string/other_arrive</item>
+    </string-array>
 
 </resources>

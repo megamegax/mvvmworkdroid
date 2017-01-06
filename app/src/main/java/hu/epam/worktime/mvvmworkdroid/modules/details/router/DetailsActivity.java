@@ -1,14 +1,12 @@
-package hu.epam.worktime.mvvmworkdroid.modules.details.view;
+package hu.epam.worktime.mvvmworkdroid.modules.details.router;
 
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.View;
+
 import hu.epam.worktime.mvvmworkdroid.R;
 
-public class DetailsActivity extends AppCompatActivity {
+public class DetailsActivity extends AppCompatActivity implements DetailsRouter {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -19,4 +17,8 @@ public class DetailsActivity extends AppCompatActivity {
 
     }
 
+    @Override
+    public void goBack() {
+        onBackPressed();
+    }
 }

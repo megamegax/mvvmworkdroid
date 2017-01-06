@@ -1,5 +1,8 @@
 package hu.epam.worktime.mvvmworkdroid.di.save;
 
+import android.app.FragmentManager;
+import android.content.Context;
+
 import dagger.Module;
 import dagger.Provides;
 import hu.epam.worktime.mvvmworkdroid.modules.dal.WorkItemDao;
@@ -29,8 +32,13 @@ public class SaveActivityModule {
     }
 
     @Provides
-    SaveViewModel providesSaveViewModel(SaveModel model, SaveRouter router) {
-        return new SaveViewModel(model, router);
+    SaveViewModel providesSaveViewModel(SaveModel model, SaveRouter router, Context context, FragmentManager fragmentManager) {
+        return new SaveViewModel(model, router, context, fragmentManager);
+    }
+
+    @Provides
+    FragmentManager providesFragmentManager() {
+        return activity.getFragmentManager();
     }
 
     @Provides
@@ -40,6 +48,11 @@ public class SaveActivityModule {
 
     @Provides
     SaveRouter provideSaveRouter() {
+        return activity;
+    }
+
+    @Provides
+    Context providesContext() {
         return activity;
     }
 
