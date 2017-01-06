@@ -18,7 +18,7 @@ import hu.epam.worktime.mvvmworkdroid.databinding.ActivityMainBinding;
 import hu.epam.worktime.mvvmworkdroid.di.main.MainActivityComponent;
 import hu.epam.worktime.mvvmworkdroid.modules.details.view.DetailsActivity;
 import hu.epam.worktime.mvvmworkdroid.modules.main.main.viewmodel.MainViewModel;
-import hu.epam.worktime.mvvmworkdroid.modules.save.router.SaveTimeActivity;
+import hu.epam.worktime.mvvmworkdroid.modules.save.router.SaveActivity;
 import hu.epam.worktime.mvvmworkdroid.modules.services.models.WorkTime;
 import hu.epam.worktime.mvvmworkdroid.modules.services.worker.CalculatorService;
 
@@ -98,7 +98,7 @@ public class MainActivity extends AppCompatActivity implements MainRouter {
 
     @Override
     public void openNewEntry() {
-        Intent intent = new Intent(MainActivity.this, SaveTimeActivity.class);
+        Intent intent = new Intent(MainActivity.this, SaveActivity.class);
         startActivity(intent);
     }
 

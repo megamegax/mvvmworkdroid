@@ -21,7 +21,7 @@
             </intent-filter>
         </activity>
         <activity
-                android:name=".modules.save.router.SaveTimeActivity"
+                android:name=".modules.save.router.SaveActivity"
                 android:label="@string/title_activity_save_time"
                 android:theme="@style/AppTheme.NoActionBar">
         </activity>

@@ -3,11 +3,18 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <data>
+
+        <variable
+            name="viewModel"
+            type="hu.epam.worktime.mvvmworkdroid.modules.save.viewmodel.SaveViewModel" />
+    </data>
+
     <android.support.design.widget.CoordinatorLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:fitsSystemWindows="true"
-        tools:context=".modules.save.router.SaveTimeActivity">
+        tools:context=".modules.save.router.SaveActivity">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -25,7 +32,16 @@
                     android:layout_width="match_parent"
                     android:layout_height="?attr/actionBarSize"
                     android:background="?attr/colorPrimary"
-                    app:popupTheme="@style/AppTheme.PopupOverlay" />
+                    app:popupTheme="@style/AppTheme.PopupOverlay" >
+                    <ImageButton
+                        android:id="@+id/saveButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="right"
+                        style="?android:attr/borderlessButtonStyle"
+                        android:visibility="gone"
+                        android:src="@drawable/ic_navigation_check"/>
+                </android.support.v7.widget.Toolbar>
 
             </android.support.design.widget.AppBarLayout>
 
@@ -44,7 +60,7 @@
                     android:paddingRight="@dimen/activity_horizontal_margin"
                     android:paddingTop="@dimen/activity_vertical_margin"
                     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-                    tools:context=".modules.save.router.SaveTimeActivity"
+                    tools:context=".modules.save.router.SaveActivity"
                     tools:showIn="@layout/activity_save_time">
 
                     <ImageButton
