@@ -1,6 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.design.widget.CoordinatorLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
+<layout>
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="hu.epam.worktime.mvvmworkdroid.modules.details.viewmodel.DetailsViewModel" />
+    </data>
+
+    <android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
@@ -8,20 +16,55 @@
         android:fitsSystemWindows="true"
         tools:context=".modules.details.router.DetailsActivity">
 
-    <android.support.design.widget.AppBarLayout
-            android:layout_height="wrap_content"
+        <android.support.design.widget.AppBarLayout
             android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:theme="@style/AppTheme.AppBarOverlay">
 
-        <android.support.v7.widget.Toolbar
+            <android.support.v7.widget.Toolbar
                 android:id="@+id/toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
                 android:background="?attr/colorPrimary"
-                app:popupTheme="@style/AppTheme.PopupOverlay"/>
+                app:popupTheme="@style/AppTheme.PopupOverlay" />
 
-    </android.support.design.widget.AppBarLayout>
+        </android.support.design.widget.AppBarLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+            <TextView
+                android:id="@+id/workDay"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Munkanap" />
+
+            <TextView
+                android:id="@+id/fromto"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/workDay"
+                android:text="mettől - meddig" />
+
+            <TextView
+                android:id="@+id/foodTime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/fromto"
+
+                android:text="ebédidő:" />
+
+            <TextView
+                android:id="@+id/foodTimeFromTo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/foodTime"
+                android:text="mettől-meddig" />
+
+        </RelativeLayout>
 
 
-
-</android.support.design.widget.CoordinatorLayout>
+    </android.support.design.widget.CoordinatorLayout>
+</layout>
