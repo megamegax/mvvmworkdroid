@@ -30,48 +30,63 @@
 
         </android.support.design.widget.AppBarLayout>
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
+        <android.support.v7.widget.CardView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
             app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-            <TextView
-                android:id="@+id/date"
+            <RelativeLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@{viewModel.currentDate}" />
+                android:layout_margin="@dimen/cardview_radius"
+                android:padding="20dp">
 
-            <TextView
-                android:id="@+id/workDay"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/date"
-                android:text="Munkanap" />
+                <TextView
+                    android:id="@+id/date"
+                    style="@style/TextAppearance.AppCompat.Headline"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/default_gap"
+                    android:text="@{viewModel.currentDate}"
+                    tools:text="datum" />
 
-            <TextView
-                android:id="@+id/fromto"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/workDay"
-                android:text="@{viewModel.arriveTime + ' '+'-'+' ' + viewModel.leaveTime}" />
+                <TextView
+                    android:id="@+id/workDay"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/date"
+                    android:layout_margin="@dimen/default_gap"
+                    android:text="Munkanap" />
 
-            <TextView
-                android:id="@+id/foodTime"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/fromto"
+                <TextView
+                    android:id="@+id/fromto"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/workDay"
+                    android:layout_margin="@dimen/default_gap"
+                    android:text="@{viewModel.arriveTime + ' '+'-'+' ' + viewModel.leaveTime}"
+                    tools:text="tól-ig" />
 
-                android:text="ebédidő:" />
+                <TextView
+                    android:id="@+id/foodTime"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/fromto"
+                    android:layout_margin="@dimen/default_gap"
+                    android:text="Ebédszünet" />
 
-            <TextView
-                android:id="@+id/foodTimeFromTo"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/foodTime"
-                android:text="@{viewModel.dinnerStart + ' '+'-'+' ' + viewModel.dinnerEnd}" />
+                <TextView
+                    android:id="@+id/foodTimeFromTo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/foodTime"
+                    android:layout_margin="@dimen/default_gap"
+                    android:text="@{viewModel.dinnerStart + ' '+'-'+' ' + viewModel.dinnerEnd}"
+                    tools:text="tól-ig" />
 
-        </RelativeLayout>
+            </RelativeLayout>
 
-
+        </android.support.v7.widget.CardView>
     </android.support.design.widget.CoordinatorLayout>
 </layout>

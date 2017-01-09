@@ -1,5 +1,7 @@
 package hu.epam.worktime.mvvmworkdroid.modules.details.model;
 
+import org.threeten.bp.format.DateTimeFormatter;
+
 import hu.epam.worktime.mvvmworkdroid.modules.dal.WorkItemDao;
 import hu.epam.worktime.mvvmworkdroid.modules.services.models.WorkTime;
 
@@ -19,22 +21,32 @@ public class DetailsModel {
     }
 
     public String getArriveTime() {
-        return "00:00:00";
+        return selectedWorkTime.getArrive().format(DateTimeFormatter.ISO_LOCAL_TIME);
     }
 
     public String getLeaveTime() {
-        return "00:00:00";
+        return selectedWorkTime.getLeave().format(DateTimeFormatter.ISO_LOCAL_TIME);
     }
 
     public String getCurrentDate() {
-        return "2000.10.10.";
+        return selectedWorkTime.getDate().format(DateTimeFormatter.ISO_LOCAL_DATE);
     }
 
     public String getDinnerStartTime() {
-        return "00:00:00";
+        String dinnerStart = selectedWorkTime.getDinner().getFirst().format(DateTimeFormatter.ISO_LOCAL_TIME);
+        if (dinnerStart.equals("00:00:00")) {
+            return "12:00:00";
+        } else {
+            return dinnerStart;
+        }
     }
 
     public String getDinnerEndTime() {
-        return "00:00:00";
+        String dinnerEnd = selectedWorkTime.getDinner().getSecond().format(DateTimeFormatter.ISO_LOCAL_TIME);
+        if (dinnerEnd.equals("00:00:00")) {
+            return "12:30:00";
+        } else {
+            return dinnerEnd;
+        }
     }
 }
