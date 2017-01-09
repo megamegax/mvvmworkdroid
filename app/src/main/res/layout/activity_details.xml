@@ -52,35 +52,43 @@
 
                 <TextView
                     android:id="@+id/workDay"
+                    style="@style/TextAppearance.AppCompat.Body1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/date"
                     android:layout_margin="@dimen/default_gap"
+
                     android:text="Munkanap" />
 
                 <TextView
                     android:id="@+id/fromto"
+                    style="@style/TextAppearance.AppCompat.Body2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/workDay"
                     android:layout_margin="@dimen/default_gap"
+
                     android:text="@{viewModel.arriveTime + ' '+'-'+' ' + viewModel.leaveTime}"
                     tools:text="tól-ig" />
 
                 <TextView
                     android:id="@+id/foodTime"
+                    style="@style/TextAppearance.AppCompat.Body1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/fromto"
                     android:layout_margin="@dimen/default_gap"
+
                     android:text="Ebédszünet" />
 
                 <TextView
                     android:id="@+id/foodTimeFromTo"
+                    style="@style/TextAppearance.AppCompat.Body2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/foodTime"
                     android:layout_margin="@dimen/default_gap"
+
                     android:text="@{viewModel.dinnerStart + ' '+'-'+' ' + viewModel.dinnerEnd}"
                     tools:text="tól-ig" />
 
