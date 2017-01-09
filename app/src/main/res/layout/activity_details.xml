@@ -36,9 +36,16 @@
             app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
             <TextView
+                android:id="@+id/date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{viewModel.currentDate}" />
+
+            <TextView
                 android:id="@+id/workDay"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_below="@id/date"
                 android:text="Munkanap" />
 
             <TextView
@@ -46,7 +53,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/workDay"
-                android:text="mettől - meddig" />
+                android:text="@{viewModel.arriveTime + ' '+'-'+' ' + viewModel.leaveTime}" />
 
             <TextView
                 android:id="@+id/foodTime"
@@ -61,7 +68,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/foodTime"
-                android:text="mettől-meddig" />
+                android:text="@{viewModel.dinnerStart + ' '+'-'+' ' + viewModel.dinnerEnd}" />
 
         </RelativeLayout>
 

@@ -1,5 +1,7 @@
 package hu.epam.worktime.mvvmworkdroid.di.main;
 
+import com.google.gson.Gson;
+
 import dagger.Module;
 import dagger.Provides;
 import hu.epam.worktime.mvvmworkdroid.di.scopes.PerActivity;
@@ -78,5 +80,10 @@ public class MainActivityModule {
     @Provides
     CalculatorService provideCalculatorService() {
         return new CalculatorService();
+    }
+
+    @Provides
+    Gson providesGson() {
+        return new Gson();
     }
 }

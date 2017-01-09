@@ -11,6 +11,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
+import com.google.gson.Gson;
+
 import javax.inject.Inject;
 
 import hu.epam.worktime.mvvmworkdroid.R;
@@ -29,6 +31,9 @@ public class MainActivity extends AppCompatActivity implements MainRouter {
 
     @Inject
     CalculatorService calculatorService;
+
+    @Inject
+    Gson gson;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -93,6 +98,7 @@ public class MainActivity extends AppCompatActivity implements MainRouter {
     @Override
     public void openDetails(WorkTime workTime) {
         Intent intent = new Intent(MainActivity.this, DetailsActivity.class);
+        intent.putExtra(DetailsActivity.WORK_ITEM, gson.toJson(workTime));
         startActivity(intent);
     }
 

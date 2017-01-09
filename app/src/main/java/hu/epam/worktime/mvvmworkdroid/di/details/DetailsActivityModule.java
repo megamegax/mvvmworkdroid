@@ -1,6 +1,9 @@
 package hu.epam.worktime.mvvmworkdroid.di.details;
 
 import android.content.Context;
+
+import com.google.gson.Gson;
+
 import dagger.Module;
 import dagger.Provides;
 import hu.epam.worktime.mvvmworkdroid.modules.dal.WorkItemDao;
@@ -46,5 +49,10 @@ public class DetailsActivityModule {
     @Provides
     Context providesContext() {
         return activity;
+    }
+
+    @Provides
+    Gson providesGson() {
+        return new Gson();
     }
 }
