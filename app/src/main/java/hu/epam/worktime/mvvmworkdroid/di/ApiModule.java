@@ -7,6 +7,7 @@ import hu.epam.worktime.mvvmworkdroid.common.utils.ConstValues;
 import hu.epam.worktime.mvvmworkdroid.modules.services.WorkServiceApi;
 import okhttp3.OkHttpClient;
 import retrofit2.Retrofit;
+import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 import com.google.gson.GsonBuilder;
@@ -40,6 +41,7 @@ public class ApiModule {
     WorkServiceApi provideWorkService(GsonConverterFactory gsonConverterFactory, OkHttpClient okHttpClient) {
         return new Retrofit.Builder()
                 .addConverterFactory(gsonConverterFactory)
+                .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
                 .baseUrl(ConstValues.WORK_SERVICE_BASE_URL)
                 .client(okHttpClient)
                 .build().create(WorkServiceApi.class);

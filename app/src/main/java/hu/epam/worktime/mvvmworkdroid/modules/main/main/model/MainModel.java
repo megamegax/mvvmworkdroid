@@ -13,6 +13,11 @@ import hu.epam.worktime.mvvmworkdroid.modules.services.worker.CalculatorService;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+import rx.Subscription;
+import rx.android.schedulers.AndroidSchedulers;
+import rx.functions.Action0;
+import rx.functions.Action1;
+import rx.schedulers.Schedulers;
 
 /**
  * Created by Mihaly_Hunyady on 2016. 12. 12..
@@ -26,7 +31,6 @@ public class MainModel {
     private WorkingStatistics workingStatistics;
     private List<WorkTime> workTimes;
 
-
     public MainModel(WorkServiceApi workServiceApi, CalculatorService calculatorService, WorkItemDao workItemDao) {
         this.workItemDao = workItemDao;
         this.workServiceApi = workServiceApi;
@@ -34,47 +38,69 @@ public class MainModel {
     }
 
     public void loadWorkTimes() {
-        workServiceApi.workTimes(2).enqueue(new Callback<List<WorkTime>>() {
-            @Override
-            public void onResponse(Call<List<WorkTime>> call, Response<List<WorkTime>> response) {
-                onResult(response);
-            }
-
-            @Override
-            public void onFailure(Call<List<WorkTime>> call, Throwable t) {
-                onError(t);
-            }
-        });
+        workServiceApi.workTimes(2)
+                .subscribeOn(Schedulers.newThread())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Action1<List<WorkTime>>() {
+                    @Override
+                    public void call(List<WorkTime> workTimes) {
+                        onResult(workTimes);
+                    }
+                }, new Action1<Throwable>() {
+                    @Override
+                    public void call(Throwable throwable) {
+                        onError(throwable);
+                    }
+                }, new Action0() {
+                    @Override
+                    public void call() {
+                        onWorkTimesCompleted();
+                    }
+                });
     }
 
     private void loadWorkDays() {
-        workServiceApi.workDays().enqueue(new Callback<List<WorkDay>>() {
-            @Override
-            public void onResponse(Call<List<WorkDay>> call, Response<List<WorkDay>> response) {
-                onWorkDayResult(response);
-            }
-
-            @Override
-            public void onFailure(Call<List<WorkDay>> call, Throwable t) {
-                onError(t);
-            }
-        });
+        workServiceApi.workDays()
+                .subscribeOn(Schedulers.newThread())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Action1<List<WorkDay>>() {
+                    @Override
+                    public void call(List<WorkDay> workDays) {
+                        onWorkDayResult(workDays);
+                    }
+                }, new Action1<Throwable>() {
+                    @Override
+                    public void call(Throwable throwable) {
+                        onError(throwable);
+                    }
+                }, new Action0() {
+                    @Override
+                    public void call() {
+                        onCompleted();
+                    }
+                });
     }
 
-    private void onWorkDayResult(Response<List<WorkDay>> workDays) {
-        calculatorService.setWorkDays(workDays.body());
+    private void onWorkDayResult(List<WorkDay> workDays) {
+        calculatorService.setWorkDays(workDays);
         this.workingStatistics = calculatorService.calculateStuffs(workTimes);
         workItemDao.saveWorkingStatistics(workingStatistics);
-        onCompleted();
     }
 
-    private void onResult(Response<List<WorkTime>> workTimes) {
-        this.workTimes = workTimes.body();
+    private void onResult(List<WorkTime> workTimes) {
+        this.workTimes = workTimes;
         loadWorkDays();
     }
 
     private void onError(Throwable throwable) {
         Log.d("WorkDroid", "hiba van:" + throwable.getMessage());
+        if (callback != null) {
+            callback.onWorkTimeLoadError();
+        }
+    }
+
+    private void onWorkTimesCompleted() {
+        loadWorkDays();
     }
 
     private void onCompleted() {

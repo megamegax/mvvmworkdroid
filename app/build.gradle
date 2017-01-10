@@ -68,7 +68,9 @@ dependencies {
     compile "com.android.support:preference-v14:${supportLibVersion}"
     compile 'com.android.support.constraint:constraint-layout:1.0.0-beta4'
 
-
+    compile 'io.reactivex:rxjava:1.1.9'
+    compile 'io.reactivex:rxandroid:1.2.1@aar'
+    compile "com.squareup.retrofit2:adapter-rxjava:${retrofitVersion}"
     compile 'com.wdullaer:materialdatetimepicker:2.5.0'
     compile 'com.github.recruit-lifestyle:WaveSwipeRefreshLayout:1.6'
     compile 'com.github.asyl:ArcAnimator:v1.0.0'

@@ -9,15 +9,16 @@ import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.POST
 import retrofit2.http.Path
+import rx.Observable
 
 interface WorkServiceApi {
 
     @GET("worktime/{userId}")
-    fun workTimes(@Path("userId") id: Int): Call<List<WorkTime>>
+    fun workTimes(@Path("userId") id: Int): Observable<List<WorkTime>>
 
     @POST("time")
-    fun addTimeEvent(@Body event: Event): Call<Void>
+    fun addTimeEvent(@Body event: Event): Observable<Void>
 
     @GET("workdays")
-    fun workDays(): Call<List<WorkDay>>
+    fun workDays(): Observable<List<WorkDay>>
 }
