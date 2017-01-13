@@ -9,6 +9,7 @@ import hu.epam.worktime.mvvmworkdroid.modules.services.WorkServiceApi;
 import hu.epam.worktime.mvvmworkdroid.modules.services.models.WorkDay;
 import hu.epam.worktime.mvvmworkdroid.modules.services.models.WorkTime;
 import hu.epam.worktime.mvvmworkdroid.modules.services.models.WorkingStatistics;
+import hu.epam.worktime.mvvmworkdroid.modules.services.models.preferences.UserProfile;
 import hu.epam.worktime.mvvmworkdroid.modules.services.worker.CalculatorService;
 import retrofit2.Call;
 import retrofit2.Callback;

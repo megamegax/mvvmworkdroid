@@ -17,7 +17,7 @@ interface WorkServiceApi {
     fun workTimes(@Path("userId") id: Int): Observable<List<WorkTime>>
 
     @POST("time")
-    fun addTimeEvent(@Body event: Event): Observable<Void>
+    fun addTimeEvent(@Body event: Event): Call<Void>
 
     @GET("workdays")
     fun workDays(): Observable<List<WorkDay>>
