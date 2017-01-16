@@ -68,7 +68,7 @@ public class MainActivity extends AppCompatActivity implements MainRouter {
     }
 
     private void inject() {
-        MainActivityComponent component = MainActivityComponent.Injector.buildComponent(this);
+        MainActivityComponent component = MainActivityComponent.Injector.INSTANCE.buildComponent(this);
         component.inject(this);
     }
 

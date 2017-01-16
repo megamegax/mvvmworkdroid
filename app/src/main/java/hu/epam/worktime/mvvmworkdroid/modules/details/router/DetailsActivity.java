@@ -36,7 +36,7 @@ public class DetailsActivity extends AppCompatActivity implements DetailsRouter 
     }
 
     private void inject() {
-        DetailsActivityComponent component = DetailsActivityComponent.Injector.buildComponent(this);
+        DetailsActivityComponent component = DetailsActivityComponent.Injector.INSTANCE.buildComponent(this);
         component.inject(this);
     }
 

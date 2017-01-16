@@ -54,7 +54,7 @@ public class SaveViewModel extends BaseObservable implements DatePickerDialog.On
     }
 
     public void saveTime(View v) {
-        int eventNumber = StringEventConverter.strToEventNumber(event, context.getResources());
+        int eventNumber = StringEventConverter.INSTANCE.strToEventNumber(event, context.getResources());
         LocalDateTime localDateTime = LocalDateTime.of(currentDate, currentTime);
         addTimeEvent(eventNumber, localDateTime);
     }

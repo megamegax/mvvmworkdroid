@@ -14,7 +14,7 @@ import org.threeten.bp.LocalTime
 class CalculatorService(var workDays: List<WorkDay> = emptyList()) {
     constructor() : this(emptyList())
 
-    fun calculateStuffs(workTimes: List<WorkTime>): WorkingStatistics? {
+    fun calculateStuffs(workTimes: List<WorkTime>): WorkingStatistics {
         workTimes.forEach {
             it.nettoWork = calculateWorkDay(it)
         }

@@ -18,7 +18,7 @@ public class WorkDroidApp extends Application {
         super.onCreate();
         AndroidThreeTen.init(this);
         Realm.init(this);
-        ApplicationComponent.Injector.inject(this);
+        ApplicationComponent.Injector.INSTANCE.inject(this);
     }
 
 }

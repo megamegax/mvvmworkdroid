@@ -50,7 +50,7 @@ public class SaveActivity extends AppCompatActivity implements SaveRouter {
     }
 
     private void inject() {
-        SaveActivityComponent component = SaveActivityComponent.Injector.buildComponent(this);
+        SaveActivityComponent component = SaveActivityComponent.Injector.INSTANCE.buildComponent(this);
         component.inject(this);
     }
 }
