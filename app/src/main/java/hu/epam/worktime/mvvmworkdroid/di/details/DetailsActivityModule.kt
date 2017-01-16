@@ -18,35 +18,35 @@ import hu.epam.worktime.mvvmworkdroid.modules.details.viewmodel.DetailsViewModel
  */
 
 @Module
-class DetailsActivityModule(private val activity: DetailsActivity) {
+open class DetailsActivityModule(private val activity: DetailsActivity) {
 
     @Provides
-    internal fun providesDetailsModel(dao: WorkItemDao): DetailsModel {
+    fun providesDetailsModel(dao: WorkItemDao): DetailsModel {
         return DetailsModel(dao)
     }
 
     @Provides
-    internal fun providesDetailsViewModel(model: DetailsModel, router: DetailsRouter): DetailsViewModel {
+    fun providesDetailsViewModel(model: DetailsModel, router: DetailsRouter): DetailsViewModel {
         return DetailsViewModel(model, router)
     }
 
     @Provides
-    internal fun providesDao(): WorkItemDao {
+    fun providesDao(): WorkItemDao {
         return WorkItemDaoImpl()
     }
 
     @Provides
-    internal fun provideDetailsRouter(): DetailsRouter {
+    fun provideDetailsRouter(): DetailsRouter {
         return activity
     }
 
     @Provides
-    internal fun providesContext(): Context {
+    fun providesContext(): Context {
         return activity
     }
 
     @Provides
-    internal fun providesGson(): Gson {
+    fun providesGson(): Gson {
         return Gson()
     }
 }
