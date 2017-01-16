@@ -15,25 +15,25 @@ import javax.inject.Singleton
 
 @Module
 @Singleton
-class ApplicationModule(private val application: Application) {
+open class ApplicationModule(private val application: Application) {
 
     @Provides
     @ApplicationContext
     @Singleton
-    internal fun provideContext(): Context {
+    fun provideContext(): Context {
         return application
     }
 
     @Provides
     @Singleton
-    internal fun provideApplication(): Application {
+    fun provideApplication(): Application {
         return application
     }
 
 
     @Provides
     @Singleton
-    internal fun provideResources(): Resources {
+    fun provideResources(): Resources {
         return application.resources
     }
 }
