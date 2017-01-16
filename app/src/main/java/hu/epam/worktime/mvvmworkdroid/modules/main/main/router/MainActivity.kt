@@ -4,17 +4,11 @@ import android.content.Intent
 import android.databinding.DataBindingUtil
 import android.os.Bundle
 import android.support.design.widget.TabLayout
-import android.support.v4.view.ViewPager
 import android.support.v7.app.AppCompatActivity
-import android.support.v7.widget.Toolbar
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
-
 import com.google.gson.Gson
-
-import javax.inject.Inject
-
 import hu.epam.worktime.mvvmworkdroid.R
 import hu.epam.worktime.mvvmworkdroid.databinding.ActivityMainBinding
 import hu.epam.worktime.mvvmworkdroid.di.main.MainActivityComponent
@@ -22,18 +16,15 @@ import hu.epam.worktime.mvvmworkdroid.modules.details.router.DetailsActivity
 import hu.epam.worktime.mvvmworkdroid.modules.main.main.viewmodel.MainViewModel
 import hu.epam.worktime.mvvmworkdroid.modules.save.router.SaveActivity
 import hu.epam.worktime.mvvmworkdroid.modules.services.models.WorkTime
-import hu.epam.worktime.mvvmworkdroid.modules.services.worker.CalculatorService
+import javax.inject.Inject
 
 class MainActivity : AppCompatActivity(), MainRouter {
 
     @Inject
-    var mainViewModel: MainViewModel? = null
+    lateinit var mainViewModel: MainViewModel
 
     @Inject
-    var calculatorService: CalculatorService? = null
-
-    @Inject
-    var gson: Gson? = null
+    lateinit var gson: Gson
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -63,7 +54,7 @@ class MainActivity : AppCompatActivity(), MainRouter {
     }
 
     private fun inject() {
-        val component = MainActivityComponent.Injector.buildComponent(this)
+        val component = MainActivityComponent.buildComponent(this)
         component.inject(this)
     }
 
@@ -81,7 +72,7 @@ class MainActivity : AppCompatActivity(), MainRouter {
 
 
         if (id == R.id.action_settings) {
-            mainViewModel!!.refresh()
+            mainViewModel.refresh()
             return true
         }
 
@@ -89,13 +80,13 @@ class MainActivity : AppCompatActivity(), MainRouter {
     }
 
     override fun openDetails(workTime: WorkTime) {
-        val intent = Intent(this@MainActivity, DetailsActivity::class.java)
-        intent.putExtra(DetailsActivity.WORK_ITEM, gson!!.toJson(workTime))
+        val intent = Intent(this, DetailsActivity::class.java)
+        intent.putExtra(DetailsActivity.WORK_ITEM, gson.toJson(workTime))
         startActivity(intent)
     }
 
     override fun openNewEntry() {
-        val intent = Intent(this@MainActivity, SaveActivity::class.java)
+        val intent = Intent(this, SaveActivity::class.java)
         startActivityForResult(intent, 0)
     }
 
@@ -105,16 +96,16 @@ class MainActivity : AppCompatActivity(), MainRouter {
 
     override fun onStart() {
         super.onStart()
-        mainViewModel!!.onStart()
+        mainViewModel.onStart()
     }
 
     override fun onStop() {
         super.onStop()
-        mainViewModel!!.onStop()
+        mainViewModel.onStop()
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent) {
         super.onActivityResult(requestCode, resultCode, data)
-        mainViewModel!!.refresh()
+        mainViewModel.refresh()
     }
 }

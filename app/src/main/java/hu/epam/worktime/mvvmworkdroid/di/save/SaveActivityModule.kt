@@ -18,36 +18,33 @@ import hu.epam.worktime.mvvmworkdroid.modules.services.WorkServiceApi
  */
 
 @Module
-open class SaveActivityModule(private val activity: SaveActivity) {
+class SaveActivityModule(private val activity: SaveActivity) {
 
     @Provides
-    fun providesSaveModel(workServiceApi: WorkServiceApi, dao: WorkItemDao): SaveModel {
+    fun providesSaveModel(workServiceApi: WorkServiceApi,
+                          dao: WorkItemDao): SaveModel {
         return SaveModel(workServiceApi, dao)
     }
 
     @Provides
-    fun providesSaveViewModel(model: SaveModel, router: SaveRouter, context: Context, fragmentManager: FragmentManager): SaveViewModel {
+    fun providesSaveViewModel(model: SaveModel,
+                              router: SaveRouter,
+                              context: Context,
+                              fragmentManager: FragmentManager): SaveViewModel {
         return SaveViewModel(model, router, context, fragmentManager)
     }
 
     @Provides
-    fun providesFragmentManager(): FragmentManager {
-        return activity.fragmentManager
-    }
+    fun providesFragmentManager(): FragmentManager = activity.fragmentManager
+
 
     @Provides
-    fun providesDao(): WorkItemDao {
-        return WorkItemDaoImpl()
-    }
+    fun providesDao(): WorkItemDao = WorkItemDaoImpl()
 
     @Provides
-    fun provideSaveRouter(): SaveRouter {
-        return activity
-    }
+    fun provideSaveRouter(): SaveRouter = activity
 
     @Provides
-    fun providesContext(): Context {
-        return activity
-    }
+    fun providesContext(): Context = activity
 
 }

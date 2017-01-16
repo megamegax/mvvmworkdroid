@@ -32,7 +32,7 @@ interface ApplicationComponent {
     /**
      * Inner injector class to avoid the boiler-plate dagger coding in injected class.
      */
-    object Injector {
+    companion object {
         lateinit var component: ApplicationComponent
             private set
 

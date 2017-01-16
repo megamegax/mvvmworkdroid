@@ -40,13 +40,13 @@ interface MainActivityComponent {
      * The class help to avoid the boiler-plate dagger coding in injected class.
      */
 
-    object Injector {
+    companion object {
         lateinit var component: MainActivityComponent
             private set
 
         fun buildComponent(activity: MainActivity): MainActivityComponent {
             component = DaggerMainActivityComponent.builder()
-                    .applicationComponent(ApplicationComponent.Injector.component)
+                    .applicationComponent(ApplicationComponent.component)
                     .activityModule(ActivityModule(activity))
                     .mainActivityModule(MainActivityModule(activity))
                     .build()
@@ -54,7 +54,7 @@ interface MainActivityComponent {
         }
 
         fun setActivityComponent(activityComponent: MainActivityComponent) {
-            Injector.component = activityComponent
+            MainActivityComponent.component = activityComponent
         }
     }
 }

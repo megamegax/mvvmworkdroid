@@ -12,11 +12,11 @@ import hu.epam.worktime.mvvmworkdroid.di.qualifiers.ActivityContext
  * Created by Mihaly_Hunyady on 2016. 12. 01..
  */
 @Module
-open class ActivityModule(private val activity: Activity) {
+class ActivityModule(private val activity: Activity) {
 
     @Provides
     @ActivityContext
-    fun provideContext(): Context {
+    internal fun provideContext(): Context {
         return activity
     }
 

@@ -22,15 +22,20 @@ import hu.epam.worktime.mvvmworkdroid.modules.services.worker.CalculatorService
  * Created by Mihaly_Hunyady on 2016. 12. 01..
  */
 @Module
-open class MainActivityModule(private val activity: MainActivity) {
+class MainActivityModule(private val activity: MainActivity) {
 
     @Provides
-    fun providesMainModel(workServiceApi: WorkServiceApi, calculatorService: CalculatorService, dao: WorkItemDao): MainModel {
+    fun providesMainModel(workServiceApi: WorkServiceApi,
+                          calculatorService: CalculatorService,
+                          dao: WorkItemDao): MainModel {
         return MainModel(workServiceApi, calculatorService, dao)
     }
 
     @Provides
-    fun providesMainViewModel(model: MainModel, mainRouter: MainRouter, mainListViewModel: MainListViewModel, mainStatsViewModel: MainStatsViewModel): MainViewModel {
+    fun providesMainViewModel(model: MainModel,
+                              mainRouter: MainRouter,
+                              mainListViewModel: MainListViewModel,
+                              mainStatsViewModel: MainStatsViewModel): MainViewModel {
         val mainViewModel = MainViewModel(model, mainRouter)
         mainViewModel.addView(mainStatsViewModel)
         mainViewModel.addView(mainListViewModel)
@@ -38,46 +43,37 @@ open class MainActivityModule(private val activity: MainActivity) {
     }
 
     @Provides
-    fun providesDao(): WorkItemDao {
-        return WorkItemDaoImpl()
-    }
+    fun providesDao(): WorkItemDao = WorkItemDaoImpl()
 
     @Provides
     @PerActivity
-    fun providesMainListModel(dao: WorkItemDao): MainListModel {
-        return MainListModel(dao)
-    }
+    fun providesMainListModel(dao: WorkItemDao): MainListModel = MainListModel(dao)
 
     @Provides
     @PerActivity
-    fun providesMainListViewModel(model: MainListModel, mainRouter: MainRouter): MainListViewModel {
+    fun providesMainListViewModel(model: MainListModel,
+                                  mainRouter: MainRouter): MainListViewModel {
         return MainListViewModel(model, mainRouter)
     }
 
     @Provides
     @PerActivity
-    fun providesMainStatsModel(dao: WorkItemDao): MainStatsModel {
-        return MainStatsModel(dao)
-    }
+    fun providesMainStatsModel(dao: WorkItemDao): MainStatsModel = MainStatsModel(dao)
+
 
     @Provides
     @PerActivity
-    fun providesMainStatsViewModel(model: MainStatsModel): MainStatsViewModel {
-        return MainStatsViewModel(model)
-    }
+    fun providesMainStatsViewModel(model: MainStatsModel): MainStatsViewModel = MainStatsViewModel(model)
+
 
     @Provides
-    fun provideMainRouter(): MainRouter {
-        return activity
-    }
+    fun provideMainRouter(): MainRouter = activity
+
 
     @Provides
-    fun provideCalculatorService(): CalculatorService {
-        return CalculatorService()
-    }
+    fun provideCalculatorService(): CalculatorService = CalculatorService()
+
 
     @Provides
-    fun providesGson(): Gson {
-        return Gson()
-    }
+    fun providesGson(): Gson = Gson()
 }

@@ -43,12 +43,13 @@ kapt {
 }
 dependencies {
     compile "com.google.dagger:dagger:${daggerVersion}"
-    annotationProcessor "com.google.dagger:dagger-compiler:2.8"
-    debugAnnotationProcessor 'com.google.dagger:dagger-compiler:2.2'
-    kapt 'com.google.dagger:dagger-compiler:2.8'
+    debugAnnotationProcessor "com.google.dagger:dagger-compiler:${daggerVersion}"
+    annotationProcessor "com.google.dagger:dagger-compiler:${daggerVersion}"
+    kapt "com.google.dagger:dagger-compiler:${daggerVersion}"
     kapt 'com.android.databinding:compiler:2.2.3'
     provided 'org.glassfish:javax.annotation:10.0-b28'
     provided 'javax.annotation:jsr250-api:1.0'
+
     compile fileTree(dir: 'libs', include: ['*.jar'])
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
