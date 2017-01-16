@@ -17,7 +17,7 @@ class WorkDroidApp : Application() {
         super.onCreate()
         AndroidThreeTen.init(this)
         Realm.init(this)
-        ApplicationComponent.Injector.inject(this)
+        ApplicationComponent.inject(this)
     }
 
 }
