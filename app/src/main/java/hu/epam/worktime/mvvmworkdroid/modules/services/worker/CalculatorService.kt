@@ -33,8 +33,6 @@ class CalculatorService(var workDays: List<WorkDay> = emptyList()) {
         return Time((daysToWork * 8).toLong(), 0, 0)
     }
 
-
-    //FIXME ki kell javítani, rossz
     private fun calculateDaysToWork(): Int {
 
         val month = workDays.find { it.year == LocalDate.now().year && it.month == LocalDate.now().monthValue }
