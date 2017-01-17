@@ -15,8 +15,8 @@ import hu.epam.worktime.mvvmworkdroid.common.widgets.recyclerview.decorator.Spac
  * setup adapter and layoutmanager from XML.
  * Created by Mate_Redecsi on 10/19/2016.
  */
-public final class JavaRecyclerViewBindingAdapter {
-    private JavaRecyclerViewBindingAdapter() {
+public final class RecyclerViewBindingAdapter {
+    private RecyclerViewBindingAdapter() {
     }
 
     @BindingAdapter("columns")

@@ -15,8 +15,8 @@ import hu.epam.worktime.mvvmworkdroid.common.widgets.recyclerview.RecyclerViewAd
  * Created by hunyadym on 2017. 01. 03..
  */
 
-public class JavaViewPagerBindingAdapter {
-    private JavaViewPagerBindingAdapter() {
+public class ViewPagerBindingAdapter {
+    private ViewPagerBindingAdapter() {
 
     }
 

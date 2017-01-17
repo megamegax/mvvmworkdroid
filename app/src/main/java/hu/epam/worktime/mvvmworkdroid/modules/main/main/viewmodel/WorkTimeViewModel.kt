@@ -15,6 +15,10 @@ import org.threeten.bp.format.DateTimeFormatter
  */
 
 class WorkTimeViewModel(private val router: MainRouter) : ListItemViewModel() {
+    override fun getViewType(): Int {
+        return 0
+    }
+
     private var workTime: WorkTime? = null
 
     fun setWorkTime(workTime: WorkTime) {
@@ -33,6 +37,4 @@ class WorkTimeViewModel(private val router: MainRouter) : ListItemViewModel() {
         router.openDetails(workTime!!)
     }
 
-    override val viewType: Int
-        get() = 0
 }
