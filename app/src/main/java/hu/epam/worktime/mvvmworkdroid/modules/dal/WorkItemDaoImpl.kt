@@ -3,6 +3,7 @@ package hu.epam.worktime.mvvmworkdroid.modules.dal
 import hu.epam.worktime.mvvmworkdroid.modules.dal.model.PairEntity
 import hu.epam.worktime.mvvmworkdroid.modules.dal.model.WorkTimeEntity
 import hu.epam.worktime.mvvmworkdroid.modules.dal.model.WorkingStatisticsEntity
+import hu.epam.worktime.mvvmworkdroid.modules.services.models.Time
 import hu.epam.worktime.mvvmworkdroid.modules.services.models.WorkTime
 import hu.epam.worktime.mvvmworkdroid.modules.services.models.WorkingStatistics
 import io.realm.Realm
@@ -39,9 +40,9 @@ class WorkItemDaoImpl : WorkItemDao {
                 newEntity.avgWorkTime = workingStatistics.avgWorkTime.format(DateTimeFormatter.ISO_TIME)
                 newEntity.dailyWorkTime = workingStatistics.dailyWorkTime.format(DateTimeFormatter.ISO_TIME)
                 newEntity.daysToWork = workingStatistics.daysToWork
-                newEntity.montlyWorkTime = workingStatistics.montlyWorkTime.format(DateTimeFormatter.ISO_TIME)
+                newEntity.montlyWorkTime = workingStatistics.montlyWorkTime.toString()
                 newEntity.workTimes = convertWorkTimesToWorkTimeEntities(workingStatistics.workTimes)
-                newEntity.workTimeLeft = workingStatistics.workTimeLeft
+                newEntity.workTimeLeft = workingStatistics.workTimeLeft.toString()
                 newEntity.id = workingStatistics.id
             }
         }
@@ -54,10 +55,10 @@ class WorkItemDaoImpl : WorkItemDao {
             entity.avgWorkTime = workingStatistics.avgWorkTime.format(DateTimeFormatter.ISO_TIME)
             entity.dailyWorkTime = workingStatistics.dailyWorkTime.format(DateTimeFormatter.ISO_TIME)
             entity.daysToWork = workingStatistics.daysToWork
-            entity.montlyWorkTime = workingStatistics.montlyWorkTime.format(DateTimeFormatter.ISO_TIME)
+            entity.montlyWorkTime = workingStatistics.montlyWorkTime.toString()
             entity.workTimes = convertWorkTimesToWorkTimeEntities(workingStatistics.workTimes)
             entity.id = workingStatistics.id
-            entity.workTimeLeft = workingStatistics.workTimeLeft
+            entity.workTimeLeft = workingStatistics.workTimeLeft.toString()
         }
     }
 
@@ -108,8 +109,8 @@ class WorkItemDaoImpl : WorkItemDao {
                 dailyWorkTime = LocalTime.parse(entity.dailyWorkTime),
                 avgWorkTime = LocalTime.parse(entity.avgWorkTime),
                 daysToWork = entity.daysToWork,
-                montlyWorkTime = LocalTime.parse(entity.montlyWorkTime),
-                workTimeLeft = entity.workTimeLeft,
+                montlyWorkTime = Time.parse(entity.montlyWorkTime),
+                workTimeLeft = Time.parse(entity.workTimeLeft),
                 workTimes = convertWorkTimesEntityToWorkTime(entity.workTimes)
 
         )

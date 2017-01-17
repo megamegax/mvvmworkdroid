@@ -1,5 +1,6 @@
 package hu.epam.worktime.mvvmworkdroid.modules.services.worker
 
+import hu.epam.worktime.mvvmworkdroid.modules.services.models.Time
 import hu.epam.worktime.mvvmworkdroid.modules.services.models.WorkDay
 import hu.epam.worktime.mvvmworkdroid.modules.services.models.WorkTime
 import hu.epam.worktime.mvvmworkdroid.modules.services.models.WorkingStatistics
@@ -21,15 +22,15 @@ class CalculatorService(var workDays: List<WorkDay> = emptyList()) {
 
         val dailyWorkTime: LocalTime = workTimes.find { it.date == LocalDate.now() }?.nettoWork ?: LocalTime.MIN
 
-        val monthlyWorkTime: LocalTime = calculateMontlyWorkTime(workTimes)
+        val monthlyWorkTime: Time = calculateMontlyWorkTime(workTimes)
         val daysToWork: Int = calculateDaysToWork()
-        val workTimeLeft: String = calculateWorkTimeLeft(daysToWork)
+        val workTimeLeft: Time = calculateWorkTimeLeft(daysToWork)
         val avgWorkTime: LocalTime = calculateAverageWorktime(workTimes)
-        return WorkingStatistics(dailyWorkTime, monthlyWorkTime, daysToWork, workTimeLeft, avgWorkTime, workTimes,0)
+        return WorkingStatistics(dailyWorkTime, monthlyWorkTime, daysToWork, workTimeLeft, avgWorkTime, workTimes, 0)
     }
 
-    private fun calculateWorkTimeLeft(daysToWork: Int): String {
-        return "${daysToWork * 8}:00:00"
+    private fun calculateWorkTimeLeft(daysToWork: Int): Time {
+        return Time((daysToWork * 8).toLong(), 0, 0)
     }
 
 
@@ -56,25 +57,25 @@ class CalculatorService(var workDays: List<WorkDay> = emptyList()) {
             avg += it.nettoWork.hour * 60 * 60 + it.nettoWork.minute * 60 + it.nettoWork.second
         }
 
-        val size = if (thisMonth.size > 0) thisMonth.size else 1
+        val size = if (thisMonth.isNotEmpty()) thisMonth.size else 1
         return LocalTime.of(0, 0, 0).plusSeconds((avg / size).toLong())
     }
 
-    private fun calculateMontlyWorkTime(workTimes: List<WorkTime>): LocalTime {
-        var month: LocalTime = LocalTime.of(0, 0, 0)
+    private fun calculateMontlyWorkTime(workTimes: List<WorkTime>): Time {
+        var time: Time = Time(0, 0, 0)
         workTimes.filter { isThisMonth(it) }.forEach {
-            month = month.plusHours(it.nettoWork.hour.toLong())
-            month = month.plusMinutes(it.nettoWork.minute.toLong())
-            month = month.plusSeconds(it.nettoWork.second.toLong())
+            time = time.plusHours(it.nettoWork.hour.toLong())
+            time = time.plusMinutes(it.nettoWork.minute.toLong())
+            time = time.plusSeconds(it.nettoWork.second.toLong())
         }
-        return month
+        return time
     }
 
     private fun calculateWorkDay(workTime: WorkTime?): LocalTime {
         if (workTime == null) {
             return LocalTime.of(0, 0, 0)
         }
-        var tempTime = Duration.between(workTime.arrive, if (workTime.leave.equals(LocalTime.of(0, 0, 0))) LocalTime.now() else workTime.leave)
+        var tempTime = Duration.between(workTime.arrive, if (workTime.leave == LocalTime.of(0, 0, 0)) LocalTime.now() else workTime.leave)
         var dinnerTime = Duration.between(workTime.dinner.first, workTime.dinner.second)
         if (dinnerTime.toMinutes() < 30) {
             dinnerTime = Duration.ofMinutes(30)

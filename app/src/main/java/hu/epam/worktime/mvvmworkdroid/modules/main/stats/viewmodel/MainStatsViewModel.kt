@@ -29,8 +29,8 @@ class MainStatsViewModel(val model: MainStatsModel) : ViewItemViewModel() {
         avgWorkTime = workingStatistics.avgWorkTime.format(DateTimeFormatter.ISO_LOCAL_TIME)
         dailyWorkTime = workingStatistics.dailyWorkTime.format(DateTimeFormatter.ISO_LOCAL_TIME)
         daysToWork = workingStatistics.daysToWork.toString()
-        montlyWorkTime = workingStatistics.montlyWorkTime.format(DateTimeFormatter.ISO_LOCAL_TIME)
-        workTimeLeft = workingStatistics.workTimeLeft
+        montlyWorkTime = workingStatistics.montlyWorkTime.toString()
+        workTimeLeft = workingStatistics.workTimeLeft.toString()
         notifyPropertyChanged(BR.avgWorkTime)
         notifyPropertyChanged(BR.dailyWorkTime)
         notifyPropertyChanged(BR.daysToWork)
