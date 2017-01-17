@@ -24,7 +24,7 @@ import rx.schedulers.Schedulers
 
 class MainModel(private val workServiceApi: WorkServiceApi, private val calculatorService: CalculatorService, private val workItemDao: WorkItemDao) {
     private var callback: MainModel.ModelCallback? = null
-    private lateinit var workingStatistics: WorkingStatistics
+    private var workingStatistics: WorkingStatistics? = null
     private lateinit var workTimes: List<WorkTime>
 
     fun loadWorkTimes() {
@@ -44,7 +44,9 @@ class MainModel(private val workServiceApi: WorkServiceApi, private val calculat
     private fun onWorkDayResult(workDays: List<WorkDay>) {
         calculatorService.workDays = workDays
         this.workingStatistics = calculatorService.calculateStuffs(workTimes)
-        workItemDao.saveWorkingStatistics(workingStatistics)
+        workingStatistics?.let {
+            workItemDao.saveWorkingStatistics(workingStatistics!!)
+        }
     }
 
     private fun onResult(workTimes: List<WorkTime>) {
@@ -72,12 +74,14 @@ class MainModel(private val workServiceApi: WorkServiceApi, private val calculat
     fun setCallback(callback: ModelCallback?) {
         this.callback = callback
         if (this.callback != null) {
-            this.callback!!.onWorkTimeLoaded(workingStatistics)
+            workingStatistics?.let {
+                this.callback!!.onWorkTimeLoaded(workingStatistics!!)
+            }
         }
     }
 
     fun getWorkTimes(): WorkingStatistics {
-        return workingStatistics
+        return workingStatistics!!
     }
 
     interface ModelCallback {
