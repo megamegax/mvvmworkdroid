@@ -104,8 +104,10 @@ class MainActivity : AppCompatActivity(), MainRouter {
         mainViewModel.onStop()
     }
 
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent) {
-        super.onActivityResult(requestCode, resultCode, data)
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        if (data != null) {
+            super.onActivityResult(requestCode, resultCode, data)
+        }
         mainViewModel.refresh()
     }
 }
