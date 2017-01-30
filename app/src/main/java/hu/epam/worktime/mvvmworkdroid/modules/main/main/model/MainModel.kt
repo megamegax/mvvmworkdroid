@@ -5,6 +5,7 @@ import hu.epam.worktime.mvvmworkdroid.modules.services.WorkServiceApi
 import hu.epam.worktime.mvvmworkdroid.modules.services.models.WorkDay
 import hu.epam.worktime.mvvmworkdroid.modules.services.models.WorkTime
 import hu.epam.worktime.mvvmworkdroid.modules.services.models.WorkingStatistics
+import hu.epam.worktime.mvvmworkdroid.modules.services.models.preferences.UserProfile
 import hu.epam.worktime.mvvmworkdroid.modules.services.worker.CalculatorService
 import rx.android.schedulers.AndroidSchedulers
 import rx.schedulers.Schedulers
@@ -17,9 +18,10 @@ class MainModel(private val workServiceApi: WorkServiceApi, private val calculat
     var callback: MainModel.ModelCallback? = null
     var workingStatistics: WorkingStatistics? = null
     private lateinit var workTimes: List<WorkTime>
-
+    var userProfile = UserProfile()
     fun loadWorkTimes() {
-        workServiceApi.workTimes(2)
+
+        workServiceApi.workTimes(userProfile.id)
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({ onResult(it) }, { onError(it) }) { onWorkTimesCompleted() }

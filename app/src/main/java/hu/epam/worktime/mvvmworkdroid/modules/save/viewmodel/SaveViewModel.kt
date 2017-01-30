@@ -21,6 +21,7 @@ import hu.epam.worktime.mvvmworkdroid.modules.save.model.SaveModel
 import hu.epam.worktime.mvvmworkdroid.modules.save.router.SaveActivity
 import hu.epam.worktime.mvvmworkdroid.modules.save.router.SaveRouter
 import hu.epam.worktime.mvvmworkdroid.modules.services.models.Event
+import hu.epam.worktime.mvvmworkdroid.modules.services.models.preferences.UserProfile
 
 /**
  * Created by Mihaly_Hunyady on 2016. 12. 16..
@@ -51,7 +52,8 @@ class SaveViewModel(private val model: SaveModel, private val router: SaveRouter
     }
 
     private fun addTimeEvent(event: Int, localDateTime: LocalDateTime) {
-        val sendableEvent = Event(2, event, localDateTime.format(DateTimeFormatter.ISO_DATE_TIME))
+        val userProfile = UserProfile()
+        val sendableEvent = Event(userProfile.id, event, localDateTime.format(DateTimeFormatter.ISO_DATE_TIME))
         Thread(Runnable {
             model.sendEvent(sendableEvent)
             (router as SaveActivity).runOnUiThread { router.goBack() }
