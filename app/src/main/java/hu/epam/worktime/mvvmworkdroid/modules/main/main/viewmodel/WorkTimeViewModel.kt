@@ -15,26 +15,22 @@ import org.threeten.bp.format.DateTimeFormatter
  */
 
 class WorkTimeViewModel(private val router: MainRouter) : ListItemViewModel() {
-    override fun getViewType(): Int {
-        return 0
-    }
 
-    private var workTime: WorkTime? = null
-
-    fun setWorkTime(workTime: WorkTime) {
-        this.workTime = workTime
-    }
+    lateinit var workTime: WorkTime
 
     val date: String
         @Bindable
-        get() = workTime!!.date.format(DateTimeFormatter.ISO_LOCAL_DATE)
+        get() = workTime.date.format(DateTimeFormatter.ISO_LOCAL_DATE)
 
     val workHours: String
         @Bindable
-        get() = workTime!!.nettoWork.format(DateTimeFormatter.ISO_LOCAL_TIME)
+        get() = workTime.nettoWork.format(DateTimeFormatter.ISO_LOCAL_TIME)
 
     fun onClick(v: View) {
-        router.openDetails(workTime!!)
+        router.openDetails(workTime)
     }
 
+    override fun getViewType(): Int {
+        return 0
+    }
 }

@@ -31,11 +31,7 @@ class MainStatsViewModel(val model: MainStatsModel) : ViewItemViewModel() {
         daysToWork = workingStatistics.daysToWork.toString()
         montlyWorkTime = workingStatistics.montlyWorkTime.toString()
         workTimeLeft = workingStatistics.workTimeLeft.toString()
-        notifyPropertyChanged(BR.avgWorkTime)
-        notifyPropertyChanged(BR.dailyWorkTime)
-        notifyPropertyChanged(BR.daysToWork)
-        notifyPropertyChanged(BR.workTimeLeft)
-        notifyPropertyChanged(BR.montlyWorkTime)
+        notifyChange()
     }
 
     override fun onRefresh() {

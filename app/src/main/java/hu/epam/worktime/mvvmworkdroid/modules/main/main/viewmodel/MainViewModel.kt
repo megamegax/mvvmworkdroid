@@ -30,8 +30,7 @@ class MainViewModel(private val model: MainModel, private val router: MainRouter
     }
 
     private fun init(model: MainModel) {
-        Log.d(TAG, "elindult")
-        model.setCallback(this)
+        model.callback = this
         refresh()
     }
 
@@ -41,11 +40,11 @@ class MainViewModel(private val model: MainModel, private val router: MainRouter
     }
 
     fun onStop() {
-        model.setCallback(null)
+        model.callback = null
     }
 
     fun onStart() {
-        model.setCallback(this)
+        model.callback = this
     }
 
     override fun onWorkTimeLoaded(workTimes: WorkingStatistics) {
@@ -53,16 +52,14 @@ class MainViewModel(private val model: MainModel, private val router: MainRouter
     }
 
 
-    override fun onWorkTimeLoadError() {
+    override fun onWorkTimeLoadError(throwable: Throwable) {
+        throwable.printStackTrace()
         isLoading = false
     }
 
     override fun onWorkTimeLoadCompleted() {
         isLoading = false
-        onWorkTimeLoaded(model.getWorkTimes())
-        for (view in views) {
-            view.onRefresh()
-        }
+        views.forEach(ViewItemViewModel::onRefresh)
     }
 
     fun getViews(): List<ViewItemViewModel> {

@@ -22,15 +22,14 @@ class MainListViewModel(private val model: MainListModel, private val router: Ma
     var workTimeItemViewModels: List<ListItemViewModel>? = null
         set(workTimeItemViewModels) {
             field = workTimeItemViewModels
-            Log.d(TAG, workTimeItemViewModels?.size.toString() + "<- adatok beérkezve")
             notifyPropertyChanged(BR.workTimeItemViewModels)
         }
 
     private fun transformToItemViewModels(workTimes: List<WorkTime>): List<ListItemViewModel> {
         val itemViewModels = ArrayList<ListItemViewModel>()
-        for (workTime in workTimes) {
+        workTimes.forEach {
             val workTimeViewModel = WorkTimeViewModel(router)
-            workTimeViewModel.setWorkTime(workTime)
+            workTimeViewModel.workTime = it
             itemViewModels.add(workTimeViewModel)
         }
         return itemViewModels
