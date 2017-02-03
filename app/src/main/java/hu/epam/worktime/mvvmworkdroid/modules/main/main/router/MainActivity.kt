@@ -10,6 +10,7 @@ import android.view.MenuItem
 import android.view.View
 import com.google.gson.Gson
 import hu.epam.worktime.mvvmworkdroid.R
+import hu.epam.worktime.mvvmworkdroid.common.extensions.navigate
 import hu.epam.worktime.mvvmworkdroid.databinding.ActivityMainBinding
 import hu.epam.worktime.mvvmworkdroid.di.main.MainActivityComponent
 import hu.epam.worktime.mvvmworkdroid.modules.details.router.DetailsActivity
@@ -79,9 +80,10 @@ class MainActivity : AppCompatActivity(), MainRouter {
         return super.onOptionsItemSelected(item)
     }
 
-    override fun openDetails(workTime: WorkTime) {
+    override fun openDetails(sharedView:View, workTime: WorkTime) {
         val intent = Intent(this, DetailsActivity::class.java)
-        intent.putExtra(DetailsActivity.WORK_ITEM, gson.toJson(workTime))
+        //intent.putExtra(DetailsActivity.WORK_ITEM, gson.toJson(workTime))
+        this.navigate<DetailsActivity>(gson.toJson(workTime),sharedView,"card")
         startActivity(intent)
     }
 

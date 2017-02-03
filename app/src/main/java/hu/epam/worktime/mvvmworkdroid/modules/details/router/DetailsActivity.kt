@@ -19,6 +19,12 @@ class DetailsActivity : AppCompatActivity(), DetailsRouter {
     lateinit var gson: Gson
 
     private var workTime: WorkTime? = null
+        set(value) {
+            field = value
+            value?.let {
+                detailsViewModel.setSelectedWorkTime(value)
+            }
+        }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -26,7 +32,6 @@ class DetailsActivity : AppCompatActivity(), DetailsRouter {
         val viewDataBinding = DataBindingUtil.setContentView<ActivityDetailsBinding>(this, R.layout.activity_details)
         viewDataBinding.viewModel = detailsViewModel
         loadExtras()
-        detailsViewModel.setSelectedWorkTime(workTime!!) //TODO never do this...
     }
 
     private fun inject() {

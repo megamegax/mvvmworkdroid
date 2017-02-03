@@ -1,41 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<layout xmlns:android="http://schemas.android.com/apk/res/android"
-        >
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
 
     <data>
 
         <variable
-                name="viewModel"
-                type="hu.epam.worktime.mvvmworkdroid.modules.main.main.viewmodel.WorkTimeViewModel"/>
+            name="viewModel"
+            type="hu.epam.worktime.mvvmworkdroid.modules.main.main.viewmodel.WorkTimeViewModel" />
     </data>
 
     <android.support.v7.widget.CardView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:padding="20dp"
-            android:layout_margin="@dimen/cardview_half_radius"
-            android:onClick="@{viewModel.onClick}">
+        android:id="@+id/card"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/cardview_half_radius"
+        android:layout_marginEnd="@dimen/cardview_radius"
+        android:layout_marginStart="@dimen/cardview_radius"
+        android:layout_marginTop="@dimen/cardview_half_radius"
+        android:onClick="@{viewModel.onClick}"
+        android:padding="20dp"
+        android:transitionName="card">
 
         <RelativeLayout
-                android:orientation="vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="@dimen/activity_horizontal_margin">
+
+            <TextView
+                android:id="@+id/dateText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_toStartOf="@+id/workHoursText"
+                android:text="@{viewModel.date}" />
+
+            <TextView
+                android:id="@+id/workHoursText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:padding="@dimen/activity_horizontal_margin">
-
-            <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/dateText"
-                    android:text="@{viewModel.date}"
-                    android:layout_toStartOf="@+id/workHoursText"/>
-
-            <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/workHoursText"
-                    android:text="@{viewModel.workHours}"
-                    android:layout_alignParentEnd="true"/>
+                android:layout_alignParentEnd="true"
+                android:text="@{viewModel.workHours}" />
         </RelativeLayout>
     </android.support.v7.widget.CardView>
 </layout>

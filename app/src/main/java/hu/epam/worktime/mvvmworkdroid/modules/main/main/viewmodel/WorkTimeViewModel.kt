@@ -27,7 +27,7 @@ class WorkTimeViewModel(private val router: MainRouter) : ListItemViewModel() {
         get() = workTime.nettoWork.format(DateTimeFormatter.ISO_LOCAL_TIME)
 
     fun onClick(v: View) {
-        router.openDetails(workTime)
+        router.openDetails(v, workTime)
     }
 
     override fun getViewType(): Int {
