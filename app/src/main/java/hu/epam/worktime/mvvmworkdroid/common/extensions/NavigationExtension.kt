@@ -12,8 +12,7 @@ import android.support.v4.util.Pair
  *
  * Created by Mihaly_Hunyady on 2017. 02. 03..
  */
-inline fun <reified T : Activity> Activity.navigate(param: String,
-                                                    sharedViews: Array<Pair<View, String>>) {
+inline fun <reified T : Activity> Activity.navigate(param: String, sharedViews: Array<Pair<View, String>>) {
     val intent = Intent(this, T::class.java)
     intent.putExtra(DetailsActivity.WORK_ITEM, param)
     if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
@@ -24,5 +23,4 @@ inline fun <reified T : Activity> Activity.navigate(param: String,
         // do something for phones running an SDK before lollipop
         startActivity(intent)
     }
-
 }
