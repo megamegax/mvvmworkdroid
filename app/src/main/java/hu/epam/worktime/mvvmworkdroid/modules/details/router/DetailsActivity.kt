@@ -1,5 +1,6 @@
 package hu.epam.worktime.mvvmworkdroid.modules.details.router
 
+import android.app.Activity
 import android.databinding.DataBindingUtil
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity

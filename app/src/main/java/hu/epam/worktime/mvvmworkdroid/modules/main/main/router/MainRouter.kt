@@ -1,5 +1,6 @@
 package hu.epam.worktime.mvvmworkdroid.modules.main.main.router
 
+import android.support.v4.util.Pair
 import android.view.View
 import hu.epam.worktime.mvvmworkdroid.modules.services.models.WorkTime
 
@@ -10,7 +11,7 @@ import hu.epam.worktime.mvvmworkdroid.modules.services.models.WorkTime
  */
 
 interface MainRouter {
-    fun openDetails(sharedView: View, workTime: WorkTime)
+    fun openDetails(sharedViews: Array<Pair<View, String>>, workTime: WorkTime)
 
     fun openNewEntry()
 }

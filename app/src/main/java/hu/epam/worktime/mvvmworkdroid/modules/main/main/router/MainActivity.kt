@@ -4,6 +4,7 @@ import android.content.Intent
 import android.databinding.DataBindingUtil
 import android.os.Bundle
 import android.support.design.widget.TabLayout
+import android.support.v4.util.Pair
 import android.support.v7.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
@@ -80,11 +81,8 @@ class MainActivity : AppCompatActivity(), MainRouter {
         return super.onOptionsItemSelected(item)
     }
 
-    override fun openDetails(sharedView:View, workTime: WorkTime) {
-        val intent = Intent(this, DetailsActivity::class.java)
-        //intent.putExtra(DetailsActivity.WORK_ITEM, gson.toJson(workTime))
-        this.navigate<DetailsActivity>(gson.toJson(workTime),sharedView,"card")
-        startActivity(intent)
+    override fun openDetails(sharedViews: Array<Pair<View, String>>, workTime: WorkTime) {
+        this.navigate<DetailsActivity>(gson.toJson(workTime), sharedViews)
     }
 
     override fun openNewEntry() {

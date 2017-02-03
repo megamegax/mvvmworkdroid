@@ -1,7 +1,9 @@
 package hu.epam.worktime.mvvmworkdroid.modules.main.main.viewmodel
 
 import android.databinding.Bindable
+import android.support.v4.util.Pair
 import android.view.View
+import hu.epam.worktime.mvvmworkdroid.R
 import hu.epam.worktime.mvvmworkdroid.common.widgets.recyclerview.ListItemViewModel
 import hu.epam.worktime.mvvmworkdroid.modules.main.main.router.MainRouter
 import hu.epam.worktime.mvvmworkdroid.modules.services.models.WorkTime
@@ -27,7 +29,11 @@ class WorkTimeViewModel(private val router: MainRouter) : ListItemViewModel() {
         get() = workTime.nettoWork.format(DateTimeFormatter.ISO_LOCAL_TIME)
 
     fun onClick(v: View) {
-        router.openDetails(v, workTime)
+        val dateText = Pair(v.findViewById(R.id.dateText), "dateText")
+        val workHours = Pair(v.findViewById(R.id.workHoursText), "workHours")
+        val card = Pair(v, "card")
+
+        router.openDetails(arrayOf(card, dateText, workHours), workTime)
     }
 
     override fun getViewType(): Int {
