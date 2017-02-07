@@ -1,4 +1,4 @@
-package hu.epam.worktime.mvvmworkdroid.modules.main.main.viewmodel
+package hu.epam.worktime.mvvmworkdroid.modules.main.list.viewmodel
 
 import android.databinding.Bindable
 import android.support.v4.util.Pair

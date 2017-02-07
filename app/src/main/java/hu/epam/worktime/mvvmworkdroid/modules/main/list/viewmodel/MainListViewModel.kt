@@ -10,7 +10,7 @@ import hu.epam.worktime.mvvmworkdroid.common.widgets.recyclerview.ListItemViewMo
 import hu.epam.worktime.mvvmworkdroid.common.widgets.viewpager.ViewItemViewModel
 import hu.epam.worktime.mvvmworkdroid.modules.main.list.model.MainListModel
 import hu.epam.worktime.mvvmworkdroid.modules.main.main.router.MainRouter
-import hu.epam.worktime.mvvmworkdroid.modules.main.main.viewmodel.WorkTimeViewModel
+import hu.epam.worktime.mvvmworkdroid.modules.main.list.viewmodel.WorkTimeViewModel
 import hu.epam.worktime.mvvmworkdroid.modules.services.models.WorkTime
 
 /**
