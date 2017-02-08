@@ -78,6 +78,9 @@ dependencies {
     compile "com.squareup.retrofit2:retrofit:${retrofitVersion}"
     compile "com.squareup.retrofit2:converter-gson:${retrofitVersion}"
     compile 'com.chibatching:kotpref:1.5.0'
+    compile 'com.orhanobut:logger:1.15'
+    compile 'com.github.denisidoro.github:krouter:0.0.2'
+
 
 }
 
