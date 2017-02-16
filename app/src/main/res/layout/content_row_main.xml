@@ -6,7 +6,7 @@
 
         <variable
             name="viewModel"
-            type="hu.epam.worktime.mvvmworkdroid.modules.main.main.viewmodel.WorkTimeViewModel" />
+            type="hu.epam.worktime.mvvmworkdroid.modules.main.list.viewmodel.WorkTimeViewModel" />
     </data>
 
     <android.support.v7.widget.CardView
