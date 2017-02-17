@@ -8,5 +8,5 @@ import com.chibatching.kotpref.KotprefModel
 class UserProfile : KotprefModel() {
     var name: String by stringPrefVar()
     var loggedIn: Boolean by booleanPrefVar(false)
-    var id: Int by intPrefVar(3)
+    var id: Int by intPrefVar(2)
 }

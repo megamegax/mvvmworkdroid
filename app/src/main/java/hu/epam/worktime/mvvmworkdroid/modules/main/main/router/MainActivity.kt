@@ -12,6 +12,7 @@ import android.view.View
 import com.google.gson.Gson
 import hu.epam.worktime.mvvmworkdroid.R
 import hu.epam.worktime.mvvmworkdroid.common.extensions.navigate
+import hu.epam.worktime.mvvmworkdroid.common.extensions.navigateForResult
 import hu.epam.worktime.mvvmworkdroid.databinding.ActivityMainBinding
 import hu.epam.worktime.mvvmworkdroid.di.main.MainActivityComponent
 import hu.epam.worktime.mvvmworkdroid.modules.details.router.DetailsActivity
@@ -67,31 +68,20 @@ class MainActivity : AppCompatActivity(), MainRouter {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
         val id = item.itemId
-
-
         if (id == R.id.action_settings) {
             mainViewModel.refresh()
             return true
         }
-
         return super.onOptionsItemSelected(item)
     }
 
     override fun openDetails(sharedViews: Array<Pair<View, String>>, workTime: WorkTime) {
-        this.navigate<DetailsActivity>(gson.toJson(workTime), sharedViews)
+        navigate<DetailsActivity>(gson.toJson(workTime), sharedViews)
     }
 
     override fun openNewEntry() {
-        val intent = Intent(this, SaveActivity::class.java)
-        startActivityForResult(intent, 0)
-    }
-
-    fun addFabClicked(view: View) {
-        openNewEntry()
+        navigateForResult<SaveActivity>()
     }
 
     override fun onStart() {

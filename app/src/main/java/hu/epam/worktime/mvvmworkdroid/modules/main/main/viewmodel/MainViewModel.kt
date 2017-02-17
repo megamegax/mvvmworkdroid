@@ -3,6 +3,7 @@ package hu.epam.worktime.mvvmworkdroid.modules.main.main.viewmodel
 import android.databinding.BaseObservable
 import android.databinding.Bindable
 import android.util.Log
+import android.view.View
 
 import java.util.ArrayList
 
@@ -45,6 +46,10 @@ class MainViewModel(private val model: MainModel, private val router: MainRouter
 
     fun onStart() {
         model.callback = this
+    }
+
+    fun openSave(v: View) {
+        router.openNewEntry()
     }
 
     override fun onWorkTimeLoaded(workTimes: WorkingStatistics) {
