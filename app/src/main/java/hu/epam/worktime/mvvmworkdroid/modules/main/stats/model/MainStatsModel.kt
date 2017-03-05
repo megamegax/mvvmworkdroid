@@ -11,9 +11,9 @@ import hu.epam.worktime.mvvmworkdroid.modules.services.models.WorkingStatistics
 
 class MainStatsModel(private val workItemDao: WorkItemDao) {
 
-    fun loadWorkDays(): WorkingStatistics {
+    fun loadWorkDays(): WorkingStatistics? {
         val workingStatistics = workItemDao.find()
-        Collections.sort(workingStatistics.workTimes)
+        Collections.sort(workingStatistics?.workTimes)
         return workingStatistics
     }
 

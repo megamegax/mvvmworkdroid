@@ -43,7 +43,12 @@ class MainModel(private val workServiceApi: WorkServiceApi, private val calculat
             }
         }
 
-        callback?.run { onWorkTimeLoaded(workItemDao.find()) }
+        callback?.run {
+            workingStatistics?.let {
+                onWorkTimeLoaded(workingStatistics!!)
+            }
+            //onWorkTimeLoaded(workItemDao.find())
+        }
 
     }
 

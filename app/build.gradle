@@ -2,6 +2,8 @@ apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'realm-android'
+apply plugin: 'kotlin-kapt'
+
 apply from: 'https://gist.githubusercontent.com/stefanhoth/37f86c8e41d648cbd2c8/raw/49ca13d028885cae89f7da949f11069365aefeec/idea-gradle-sources.gradle'
 apply plugin: "com.github.ben-manes.versions"
 
@@ -33,20 +35,20 @@ android {
 }
 
 ext {
-    supportLibVersion = '25.1.0'
-    daggerVersion = "2.8"
+    supportLibVersion = '25.2.0'
+    daggerVersion = "2.9"
     retrofitVersion = "2.1.0"
-    kotlinVersion = "1.0.6"
+    kotlinVersion = "1.1.0"
 }
 kapt {
     generateStubs = true
 }
 dependencies {
     compile "com.google.dagger:dagger:${daggerVersion}"
-    debugAnnotationProcessor "com.google.dagger:dagger-compiler:${daggerVersion}"
-    annotationProcessor "com.google.dagger:dagger-compiler:${daggerVersion}"
+    //debugAnnotationProcessor "com.google.dagger:dagger-compiler:${daggerVersion}"
+    //annotationProcessor "com.google.dagger:dagger-compiler:${daggerVersion}"
     kapt "com.google.dagger:dagger-compiler:${daggerVersion}"
-    kapt 'com.android.databinding:compiler:2.2.3'
+    kapt 'com.android.databinding:compiler:2.3.0'
     provided 'org.glassfish:javax.annotation:10.0-b28'
     provided 'javax.annotation:jsr250-api:1.0'
 
@@ -67,7 +69,7 @@ dependencies {
     compile "com.android.support:gridlayout-v7:${supportLibVersion}"
     compile "com.android.support:cardview-v7:${supportLibVersion}"
     compile "com.android.support:preference-v14:${supportLibVersion}"
-    compile 'com.android.support.constraint:constraint-layout:1.0.0-beta4'
+    compile 'com.android.support.constraint:constraint-layout:1.0.0'
     compile 'io.reactivex:rxkotlin:0.60.0'
     compile 'io.reactivex:rxandroid:1.2.1@aar'
     compile "com.squareup.retrofit2:adapter-rxjava:${retrofitVersion}"
@@ -85,7 +87,7 @@ dependencies {
 }
 
 buildscript {
-    ext.kotlinVersion = "1.0.6"
+    ext.kotlinVersion = "1.1.0"
     repositories {
         jcenter()
         maven { url "https://jitpack.io" }
