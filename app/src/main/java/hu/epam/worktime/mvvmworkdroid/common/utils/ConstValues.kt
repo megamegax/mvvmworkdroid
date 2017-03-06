@@ -7,5 +7,5 @@ package hu.epam.worktime.mvvmworkdroid.common.utils
  */
 
 object ConstValues {
-    val WORK_SERVICE_BASE_URL = "http://hunyady.mywire.org:8015/"
+    val WORK_SERVICE_BASE_URL = "http://hunyadyl.synology.me:8015/"
 }
