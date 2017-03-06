@@ -35,7 +35,10 @@ class MainStatsViewModel(val model: MainStatsModel) : ViewItemViewModel() {
     }
 
     override fun onRefresh() {
-        setWorkingStatistics(model.loadWorkDays())
+        model.loadWorkDays()?.let {
+            setWorkingStatistics(it)
+        }
+
     }
 
     companion object {

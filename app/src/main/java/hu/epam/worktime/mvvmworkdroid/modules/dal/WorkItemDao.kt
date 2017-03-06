@@ -8,7 +8,7 @@ import org.threeten.bp.LocalDate
  */
 
 interface WorkItemDao {
-    fun find(): WorkingStatistics
+    fun find(): WorkingStatistics?
     fun saveWorkingStatistics(workingStatistics: WorkingStatistics)
     fun deleteAll()
 }

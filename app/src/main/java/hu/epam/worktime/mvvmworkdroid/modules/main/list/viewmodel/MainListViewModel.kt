@@ -1,16 +1,11 @@
 package hu.epam.worktime.mvvmworkdroid.modules.main.list.viewmodel
 
 import android.databinding.Bindable
-import android.util.Log
-
 import java.util.ArrayList
-
-import hu.epam.worktime.mvvmworkdroid.BR
 import hu.epam.worktime.mvvmworkdroid.common.widgets.recyclerview.ListItemViewModel
 import hu.epam.worktime.mvvmworkdroid.common.widgets.viewpager.ViewItemViewModel
 import hu.epam.worktime.mvvmworkdroid.modules.main.list.model.MainListModel
 import hu.epam.worktime.mvvmworkdroid.modules.main.main.router.MainRouter
-import hu.epam.worktime.mvvmworkdroid.modules.main.list.viewmodel.WorkTimeViewModel
 import hu.epam.worktime.mvvmworkdroid.modules.services.models.WorkTime
 
 /**
@@ -22,7 +17,7 @@ class MainListViewModel(private val model: MainListModel, private val router: Ma
     var workTimeItemViewModels: List<ListItemViewModel>? = null
         set(workTimeItemViewModels) {
             field = workTimeItemViewModels
-            notifyPropertyChanged(BR.workTimeItemViewModels)
+            notifyChange()
         }
 
     private fun transformToItemViewModels(workTimes: List<WorkTime>): List<ListItemViewModel> {
@@ -36,7 +31,9 @@ class MainListViewModel(private val model: MainListModel, private val router: Ma
     }
 
     override fun onRefresh() {
-        workTimeItemViewModels = transformToItemViewModels(model.loadWorkDays().workTimes)
+        model.loadWorkDays()?.let {
+            workTimeItemViewModels = transformToItemViewModels(it.workTimes)
+        }
     }
 
     companion object {

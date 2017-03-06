@@ -37,6 +37,7 @@ public class ViewPagerAdapter extends PagerAdapter {
      */
     public View getView(int position, ViewPager pager) {
         ViewDataBinding dataBinding = DataBindingUtil.inflate(LayoutInflater.from(pager.getContext()), itemLayouts.get(position), pager, false);
+        //  dataBinding.setVariable(BR.viewModel, items.get(position));
         dataBinding.setVariable(BR.viewModel, items.get(position));
         dataBinding.executePendingBindings();
         return dataBinding.getRoot();

@@ -21,10 +21,12 @@ import java.util.*
 class WorkItemDaoImpl : WorkItemDao {
 
 
-    override fun find(): WorkingStatistics {
-        val realm = Realm.getDefaultInstance();
+    override fun find(): WorkingStatistics? {
+        val realm = Realm.getDefaultInstance()
         val entity = realm.where(WorkingStatisticsEntity::class.java).findFirst()
-        return convertEntityToModel(entity)
+        if (entity != null)
+            return convertEntityToModel(entity)
+        else return null
     }
 
     override fun saveWorkingStatistics(workingStatistics: WorkingStatistics) {

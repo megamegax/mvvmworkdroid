@@ -23,10 +23,10 @@ class CalculatorService(var workDays: List<WorkDay> = emptyList()) {
         val dailyWorkTime: LocalTime = workTimes.find { it.date == LocalDate.now() }?.nettoWork ?: LocalTime.MIN
 
         val monthlyWorkTime: Time = calculateMontlyWorkTime(workTimes)
-        val daysToWork: Int = calculateDaysToWork()
-        val workTimeLeft: Time = calculateWorkTimeLeft(daysToWork)
+    //    val daysToWork: Int = calculateDaysToWork()
+      //  val workTimeLeft: Time = calculateWorkTimeLeft(daysToWork)
         val avgWorkTime: LocalTime = calculateAverageWorktime(workTimes)
-        return WorkingStatistics(dailyWorkTime, monthlyWorkTime, daysToWork, workTimeLeft, avgWorkTime, workTimes, 0)
+        return WorkingStatistics(dailyWorkTime, monthlyWorkTime, 0, Time(0,0,0), avgWorkTime, workTimes, 0)
     }
 
     private fun calculateWorkTimeLeft(daysToWork: Int): Time {
