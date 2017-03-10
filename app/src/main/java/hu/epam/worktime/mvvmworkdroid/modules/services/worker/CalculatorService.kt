@@ -39,7 +39,7 @@ class CalculatorService(var workDays: List<WorkDay> = emptyList()) {
         var i = 0
         var date = LocalDate.of(LocalDate.now().year, LocalDate.now().month, 1)
         listOf(1..LocalDate.now().dayOfMonth).forEach {
-            if (date.dayOfWeek.value <= 5 && date.dayOfWeek.value >= 1) {
+            if (date.dayOfWeek.value in 1..5) {
                 i += 1
             }
             date = date.plusDays(1)
