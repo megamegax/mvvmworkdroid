@@ -100,6 +100,7 @@
                         android:layout_marginStart="16dp"
                         android:layout_marginTop="16dp"
                         android:text="Kötelező nap:"
+                        android:visibility="invisible"
                         app:layout_constraintLeft_toLeftOf="parent"
                         app:layout_constraintRight_toLeftOf="@+id/requiredDays"
                         app:layout_constraintTop_toBottomOf="@+id/textViewMonthly" />
@@ -110,6 +111,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="16dp"
                         android:text="@{viewModel.daysToWork}"
+                        android:visibility="invisible"
                         app:layout_constraintLeft_toLeftOf="@+id/dailyWorkTime"
                         app:layout_constraintTop_toBottomOf="@+id/monthlyWorkTime"
                         tools:text="20" />
@@ -124,6 +126,7 @@
                         android:layout_marginStart="14dp"
                         android:layout_marginTop="16dp"
                         android:text="Hátralevő idő:"
+                        android:visibility="invisible"
                         app:layout_constraintLeft_toLeftOf="parent"
                         app:layout_constraintRight_toLeftOf="@+id/workTimeLeft"
                         app:layout_constraintTop_toBottomOf="@+id/textViewRequiredDays"
@@ -135,6 +138,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="16dp"
                         android:text="@{viewModel.workTimeLeft}"
+                        android:visibility="invisible"
                         app:layout_constraintLeft_toLeftOf="@+id/dailyWorkTime"
                         app:layout_constraintTop_toBottomOf="@+id/requiredDays"
                         tools:text="160:00:00" />

@@ -4,6 +4,7 @@ import hu.epam.worktime.mvvmworkdroid.modules.services.models.Time
 import hu.epam.worktime.mvvmworkdroid.modules.services.models.WorkDay
 import hu.epam.worktime.mvvmworkdroid.modules.services.models.WorkTime
 import hu.epam.worktime.mvvmworkdroid.modules.services.models.WorkingStatistics
+import hu.epam.worktime.mvvmworkdroid.modules.services.models.preferences.UserProfile
 import org.threeten.bp.DayOfWeek
 import org.threeten.bp.Duration
 import org.threeten.bp.LocalDate
@@ -15,6 +16,7 @@ import org.threeten.bp.LocalTime
 class CalculatorService(var workDays: List<WorkDay> = emptyList()) {
     constructor() : this(emptyList())
 
+    val userProfile = UserProfile()
     fun calculateStuffs(workTimes: List<WorkTime>): WorkingStatistics {
         workTimes.forEach {
             it.nettoWork = calculateWorkDay(it)
@@ -23,10 +25,10 @@ class CalculatorService(var workDays: List<WorkDay> = emptyList()) {
         val dailyWorkTime: LocalTime = workTimes.find { it.date == LocalDate.now() }?.nettoWork ?: LocalTime.MIN
 
         val monthlyWorkTime: Time = calculateMontlyWorkTime(workTimes)
-    //    val daysToWork: Int = calculateDaysToWork()
-      //  val workTimeLeft: Time = calculateWorkTimeLeft(daysToWork)
+        //    val daysToWork: Int = calculateDaysToWork()
+        //  val workTimeLeft: Time = calculateWorkTimeLeft(daysToWork)
         val avgWorkTime: LocalTime = calculateAverageWorktime(workTimes)
-        return WorkingStatistics(dailyWorkTime, monthlyWorkTime, 0, Time(0,0,0), avgWorkTime, workTimes, 0)
+        return WorkingStatistics(dailyWorkTime, monthlyWorkTime, 0, Time(0, 0, 0), avgWorkTime, workTimes, 0)
     }
 
     private fun calculateWorkTimeLeft(daysToWork: Int): Time {
@@ -75,7 +77,7 @@ class CalculatorService(var workDays: List<WorkDay> = emptyList()) {
         }
         var tempTime = Duration.between(workTime.arrive, if (workTime.leave == LocalTime.of(0, 0, 0)) LocalTime.now() else workTime.leave)
         var dinnerTime = Duration.between(workTime.dinner.first, workTime.dinner.second)
-        if (dinnerTime.toMinutes() < 30) {
+        if (dinnerTime.toMinutes() < 30 && userProfile.hasDinner) {
             dinnerTime = Duration.ofMinutes(30)
         }
 
